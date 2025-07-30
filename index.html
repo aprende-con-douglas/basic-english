@@ -1,0 +1,2166 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendiendo Inglés con Douglas</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        /* Estilos personalizados para el scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .topic-link.active {
+            background-color: #3b82f6; /* bg-blue-500 */
+            color: white;
+            font-weight: 600;
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 0.75rem; /* rounded-lg */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .evaluation-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .evaluation-item label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .evaluation-item input[type="radio"],
+        .evaluation-item input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+        .evaluation-item input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            margin-top: 0.5rem;
+        }
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            margin-right: 0.75rem;
+            margin-bottom: 0.75rem;
+            background-color: #e0f2fe; /* bg-blue-50 */
+            color: #1e40af; /* text-blue-800 */
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .resource-link:hover {
+            background-color: #bfdbfe; /* bg-blue-100 */
+        }
+        .resource-link i {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-4xl font-extrabold tracking-tight mb-4 md:mb-0">
+                <i class="fas fa-graduation-cap mr-3"></i>Aprendiendo Inglés con Douglas
+            </h1>
+            <nav class="space-x-4">
+                <button id="nav-home" class="py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">Inicio</button>
+                <button id="nav-register" class="py-2 px-4 rounded-lg bg-blue-500 hover:bg-blue-600 transition duration-300 shadow">Inscripción</button>
+                <button id="nav-login" class="py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">Acceder</button>
+                <button id="nav-logout" class="py-2 px-4 rounded-lg bg-red-500 hover:bg-red-600 transition duration-300 shadow hidden">Cerrar Sesión</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto p-6">
+
+        <!-- Sección de Introducción -->
+        <section id="intro-section" class="bg-white p-8 rounded-xl shadow-xl text-center max-w-4xl mx-auto">
+            <h2 class="text-5xl font-extrabold text-blue-700 mb-6 animate-pulse">¡Bienvenido al Aula Virtual!</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                ¿Listo para embarcarte en una emocionante aventura para dominar el inglés? En "Aprendiendo Inglés con Douglas", te ofrecemos un camino claro y divertido para alcanzar tus metas lingüísticas. Nuestra metodología está diseñada para que aprendas a tu propio ritmo, con contenido interactivo, evaluaciones desafiantes y el apoyo constante de tu profesor Douglas.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                Desde los saludos más básicos hasta la fluidez en conversaciones complejas, cada módulo está cuidadosamente estructurado para construir una base sólida y expandir tus conocimientos de manera progresiva. ¡Prepárate para transformar tu forma de comunicarte!
+            </p>
+            <h3 class="text-3xl font-bold text-blue-600 mb-4">¡Comienza tu viaje con "Saludos y Despedidas"!</h3>
+            <p class="text-md text-gray-600 mb-8">
+                Para que veas un adelanto de lo que te espera, hemos habilitado el primer tema de forma gratuita. ¡Explora, aprende y evalúa tus conocimientos!
+            </p>
+            <button id="explore-first-topic" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition duration-300 hover:scale-105">
+                <i class="fas fa-book-open mr-2"></i>Explorar Primer Tema
+            </button>
+            <p class="text-sm text-gray-500 mt-6">
+                ¿Ya eres estudiante? <button id="intro-login-btn" class="text-blue-600 hover:underline font-semibold">Accede aquí</button>. ¿Nuevo por aquí? <button id="intro-register-btn" class="text-blue-600 hover:underline font-semibold">Inscríbete ahora</button>.
+            </p>
+        </section>
+
+        <!-- Sección de Registro -->
+        <section id="registration-section" class="hidden bg-white p-8 rounded-xl shadow-xl max-w-md mx-auto">
+            <h2 class="text-3xl font-bold text-blue-700 mb-6 text-center">Formulario de Inscripción</h2>
+            <form id="registration-form" class="space-y-6">
+                <div>
+                    <label for="reg-name" class="block text-gray-700 text-sm font-bold mb-2">Nombre y Apellido:</label>
+                    <input type="text" id="reg-name" name="name" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" required>
+                </div>
+                <div>
+                    <label for="reg-id" class="block text-gray-700 text-sm font-bold mb-2">Cédula de Identidad:</label>
+                    <input type="text" id="reg-id" name="id" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" required>
+                </div>
+                <div>
+                    <label for="reg-age" class="block text-gray-700 text-sm font-bold mb-2">Edad:</label>
+                    <input type="number" id="reg-age" name="age" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" required min="5" max="100">
+                </div>
+                <div>
+                    <label for="reg-email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico:</label>
+                    <input type="email" id="reg-email" name="email" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" required>
+                </div>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full w-full shadow-lg transform transition duration-300 hover:scale-105">
+                    <i class="fas fa-user-plus mr-2"></i>Inscribirme
+                </button>
+            </form>
+            <p class="text-sm text-gray-500 mt-6 text-center">
+                ¿Ya tienes una cuenta? <button id="reg-login-btn" class="text-blue-600 hover:underline font-semibold">Inicia sesión aquí</button>.
+            </p>
+        </section>
+
+        <!-- Sección de Inicio de Sesión -->
+        <section id="login-section" class="hidden bg-white p-8 rounded-xl shadow-xl max-w-md mx-auto">
+            <h2 class="text-3xl font-bold text-blue-700 mb-6 text-center">Acceder al Aula Virtual</h2>
+            <form id="login-form" class="space-y-6">
+                <div>
+                    <label for="login-email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico:</label>
+                    <input type="email" id="login-email" name="email" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" required>
+                </div>
+                <div>
+                    <label for="login-password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña:</label>
+                    <div class="relative">
+                        <input type="password" id="login-password" name="password" class="shadow appearance-none border rounded-lg w-full py-3 px-4 pr-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" required>
+                        <button type="button" id="toggle-password-visibility" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-600">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full w-full shadow-lg transform transition duration-300 hover:scale-105">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Iniciar Sesión
+                </button>
+            </form>
+            <p class="text-sm text-gray-500 mt-6 text-center">
+                ¿Eres nuevo? <button id="login-register-btn" class="text-blue-600 hover:underline font-semibold">Inscríbete aquí</button>.
+            </p>
+        </section>
+
+        <!-- Sección del Aula Virtual (LMS Dashboard) -->
+        <section id="lms-dashboard" class="hidden flex flex-col lg:flex-row bg-white rounded-xl shadow-xl min-h-[70vh]">
+            <!-- Sidebar de Módulos -->
+            <aside class="w-full lg:w-1/4 bg-blue-50 p-6 rounded-l-xl border-r border-blue-100 overflow-y-auto">
+                <h3 class="text-2xl font-bold text-blue-800 mb-6">Módulos del Curso</h3>
+                <nav id="module-navigation" class="space-y-2">
+                    <!-- Los módulos y temas se generarán aquí con JS -->
+                </nav>
+                <div class="mt-8 p-4 bg-blue-100 rounded-lg">
+                    <h4 class="text-lg font-semibold text-blue-800 mb-2">Progreso del Estudiante</h4>
+                    <ul id="progress-display" class="text-gray-700 text-sm">
+                        <!-- El progreso se mostrará aquí -->
+                    </ul>
+                    <button id="change-password-btn" class="mt-4 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full text-sm shadow">
+                        <i class="fas fa-key mr-2"></i>Cambiar Contraseña
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Contenido Principal del Módulo -->
+            <div id="module-content" class="flex-grow p-8 overflow-y-auto">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">Selecciona un módulo para empezar</h2>
+                <p class="text-lg text-gray-600">Usa el menú de la izquierda para navegar por los temas del curso.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modales -->
+    <div id="message-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modal-title" class="text-2xl font-bold mb-4"></h3>
+            <p id="modal-message" class="text-lg text-gray-700 mb-6"></p>
+            <button id="modal-ok-button" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full shadow">Aceptar</button>
+        </div>
+    </div>
+
+    <div id="password-change-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-modal="password-change-modal">&times;</span>
+            <h3 class="text-2xl font-bold text-blue-700 mb-6">Cambiar Contraseña</h3>
+            <form id="password-change-form" class="space-y-4">
+                <div>
+                    <label for="current-password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña Actual:</label>
+                    <input type="password" id="current-password" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" required>
+                </div>
+                <div>
+                    <label for="new-password" class="block text-gray-700 text-sm font-bold mb-2">Nueva Contraseña:</label>
+                    <input type="password" id="new-password" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" required>
+                </div>
+                <div>
+                    <label for="confirm-new-password" class="block text-gray-700 text-sm font-bold mb-2">Confirmar Nueva Contraseña:</label>
+                    <input type="password" id="confirm-new-password" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" required>
+                </div>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full w-full shadow-lg">
+                    Cambiar Contraseña
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // URL de tu Google Apps Script desplegado como aplicación web
+        // ¡DEBES REEMPLAZAR ESTO CON LA URL REAL DESPUÉS DE DESPLEGAR TU SCRIPT!
+        const GOOGLE_APPS_SCRIPT_URL = 'TU_URL_DE_APPS_SCRIPT_AQUI';
+
+        let loggedInUser = null; // Stores the logged-in user's email
+        let studentProgress = {}; // Stores student progress: { 'topicId': { score: X, passed: true/false, attempts: Y } }
+        let currentEvaluationTimer = null; // For the evaluation timer
+        let currentTopicId = null; // To know which topic is active
+
+        // --- Elementos del DOM ---
+        const sections = {
+            intro: document.getElementById('intro-section'),
+            registration: document.getElementById('registration-section'),
+            login: document.getElementById('login-section'),
+            lmsDashboard: document.getElementById('lms-dashboard')
+        };
+
+        const navButtons = {
+            home: document.getElementById('nav-home'),
+            register: document.getElementById('nav-register'),
+            login: document.getElementById('nav-login'),
+            logout: document.getElementById('nav-logout')
+        };
+
+        const introButtons = {
+            exploreFirstTopic: document.getElementById('explore-first-topic'),
+            introLogin: document.getElementById('intro-login-btn'),
+            introRegister: document.getElementById('intro-register-btn')
+        };
+
+        const registrationForm = document.getElementById('registration-form');
+        const regLoginBtn = document.getElementById('reg-login-btn');
+
+        const loginForm = document.getElementById('login-form');
+        const togglePasswordVisibilityBtn = document.getElementById('toggle-password-visibility');
+        const loginPasswordInput = document.getElementById('login-password');
+        const loginRegisterBtn = document.getElementById('login-register-btn');
+
+        const moduleNavigation = document.getElementById('module-navigation');
+        const moduleContent = document.getElementById('module-content');
+        const progressDisplay = document.getElementById('progress-display');
+        const changePasswordBtn = document.getElementById('change-password-btn');
+
+        const messageModal = document.getElementById('message-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMessage = document.getElementById('modal-message');
+        const modalOkButton = document.getElementById('modal-ok-button');
+        const closeButtons = document.querySelectorAll('.close-button');
+
+        const passwordChangeModal = document.getElementById('password-change-modal');
+        const passwordChangeForm = document.getElementById('password-change-form');
+
+        // --- Datos de los Módulos (Contenido del Curso) ---
+        const courseModules = [
+            {
+                id: 'modulo-1-primeros-pasos',
+                title: 'Módulo 1: Primeros Pasos en Inglés',
+                unlocked: true, // Siempre desbloqueado
+                topics: [
+                    {
+                        id: 'saludos-despedidas',
+                        title: 'Saludos y Despedidas',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Aprender a saludar y despedirse es el primer paso fundamental para cualquier comunicación en inglés. Te permitirá iniciar y finalizar conversaciones de manera educada y natural.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Existen muchas formas de saludar y despedirse en inglés, dependiendo del contexto (formal o informal) y del momento del día.
+                            </p>
+                            <ul class="list-disc list-inside text-gray-700 mb-4">
+                                <li><strong>Saludos Formales:</strong>
+                                    <ul class="list-circle list-inside ml-4">
+                                        <li>Good morning! (Buenos días) - Usado hasta el mediodía.</li>
+                                        <li>Good afternoon! (Buenas tardes) - Usado desde el mediodía hasta el anochecer.</li>
+                                        <li>Good evening! (Buenas noches/tardes) - Usado al anochecer.</li>
+                                        <li>How do you do? (¿Cómo está usted?) - Muy formal, poco común hoy en día.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Saludos Informales:</strong>
+                                    <ul class="list-circle list-inside ml-4">
+                                        <li>Hello! (Hola)</li>
+                                        <li>Hi! (Hola)</li>
+                                        <li>Hey! (Hola)</li>
+                                        <li>How are you? (¿Cómo estás?)</li>
+                                        <li>How's it going? (¿Cómo va?)</li>
+                                        <li>What's up? (¿Qué hay de nuevo?) - Muy informal.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Despedidas Formales:</strong>
+                                    <ul class="list-circle list-inside ml-4">
+                                        <li>Good night! (Buenas noches) - Usado solo al despedirse por la noche.</li>
+                                        <li>Goodbye! (Adiós)</li>
+                                        <li>Farewell! (Adiós) - Muy formal, poco común.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Despedidas Informales:</strong>
+                                    <ul class="list-circle list-inside ml-4">
+                                        <li>Bye! (Adiós)</li>
+                                        <li>See you later! (¡Nos vemos luego!)</li>
+                                        <li>See you soon! (¡Nos vemos pronto!)</li>
+                                        <li>Take care! (¡Cuídate!)</li>
+                                        <li>Have a good day! (¡Que tengas un buen día!)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Ejemplos Prácticos</h3>
+                            <ul class="list-disc list-inside text-gray-700 mb-4">
+                                <li><strong>A:</strong> "Good morning, Mr. Smith! How are you today?" (Buenos días, Sr. Smith! ¿Cómo está hoy?)</li>
+                                <li><strong>B:</strong> "Good morning, Mary. I'm doing well, thank you. And you?" (Buenos días, Mary. Estoy bien, gracias. ¿Y tú?)</li>
+                                <li><strong>A:</strong> "Hi, John! What's up?" (¡Hola, John! ¿Qué hay de nuevo?)</li>
+                                <li><strong>B:</strong> "Hey, Sarah! Not much, just chilling. See you later!" (¡Hola, Sarah! No mucho, solo relajándome. ¡Nos vemos luego!)</li>
+                                <li><strong>A:</strong> "It was nice meeting you, Mr. Davis. Goodbye!" (Fue un placer conocerlo, Sr. Davis. ¡Adiós!)</li>
+                                <li><strong>B:</strong> "Goodbye, Ms. Johnson. Have a good evening!" (Adiós, Sra. Johnson. ¡Que tenga una buena tarde!)</li>
+                            </ul>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-saludos.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Saludos y Despedidas
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_SALUDOS" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Cómo Saludar en Inglés
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-saludos.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de Saludos
+                                </a>
+                            </div>
+                            <button id="start-evaluation-saludos" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Cuál es la forma más común de decir "Hola" de manera informal?', options: ['Good morning', 'How do you do?', 'Hi', 'Good evening'], answer: 'Hi' },
+                            { type: 'true-false', question: '"Good night" se usa para saludar a alguien por la noche.', answer: false, feedback: '¡Cuidado! "Good night" se usa para despedirse por la noche, no para saludar. Para saludar, usarías "Good evening".' },
+                            { type: 'completion', question: 'Completa la frase: "See you ______!" (¡Nos vemos luego!)', answer: 'later', feedback: '¡Excelente! "See you later!" es una despedida informal muy común.' },
+                            { type: 'multiple-choice', question: 'Si es mediodía, ¿qué saludo es el más apropiado?', options: ['Good morning', 'Good afternoon', 'Good evening', 'Good night'], answer: 'Good afternoon' },
+                            { type: 'true-false', question: '"What\'s up?" es un saludo muy formal.', answer: false, feedback: '"What\'s up?" es un saludo muy informal, usado entre amigos.' }
+                        ]
+                    },
+                    {
+                        id: 'el-abecedario',
+                        title: 'El Abecedario',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                El abecedario es la base de la lectura y escritura en inglés. Conocer la pronunciación de cada letra te ayudará a deletrear y entender palabras.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                El abecedario inglés tiene 26 letras, las mismas que en español, pero su pronunciación es diferente. Es crucial aprender el sonido de cada una.
+                            </p>
+                            <h4 class="text-2xl font-semibold text-blue-600 mb-3">Las Letras y su Pronunciación:</h4>
+                            <ul class="list-disc list-inside text-gray-700 mb-4 grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                <li>A (ei)</li><li>B (bi)</li><li>C (si)</li><li>D (di)</li><li>E (i)</li><li>F (ef)</li>
+                                <li>G (yi)</li><li>H (eich)</li><li>I (ai)</li><li>J (yei)</li><li>K (kei)</li><li>L (el)</li>
+                                <li>M (em)</li><li>N (en)</li><li>O (ou)</li><li>P (pi)</li><li>Q (kiu)</li><li>R (ar)</li>
+                                <li>S (es)</li><li>T (ti)</li><li>U (iu)</li><li>V (vi)</li><li>W (dabol iu)</li><li>X (ex)</li>
+                                <li>Y (uai)</li><li>Z (zi/zed)</li>
+                            </ul>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Ejemplos Prácticos</h3>
+                            <ul class="list-disc list-inside text-gray-700 mb-4">
+                                <li>How do you spell "cat"? (C-A-T)</li>
+                                <li>Can you spell your name for me? (Sure, it's J-O-H-N)</li>
+                            </ul>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-abecedario.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: El Abecedario
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_ABECEDARIO" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Canción del Abecedario
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-abecedario.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de Letras
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="el-abecedario">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Cómo se deletrea "dog"?', options: ['D-O-G', 'D-A-G', 'D-U-G'], answer: 'D-O-G' },
+                            { type: 'true-false', question: 'La letra "A" se pronuncia "ei".', answer: true },
+                            { type: 'completion', question: '¿Qué letra viene después de "M"? _____', answer: 'N' },
+                            { type: 'multiple-choice', question: '¿Cuál de estas es una vocal?', options: ['P', 'R', 'U'], answer: 'U' },
+                            { type: 'true-false', question: 'La letra "Z" solo se pronuncia "zed".', answer: false, feedback: 'La letra "Z" puede pronunciarse como "zi" (americano) o "zed" (británico).' }
+                        ]
+                    },
+                    {
+                        id: 'numeros-ordinales-cardinales',
+                        title: 'Números ordinales y cardinales',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los números son esenciales para dar información sobre cantidades, orden, fechas y más. Aprender la diferencia entre cardinales y ordinales es clave.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>Números Cardinales:</strong> Se usan para contar cantidades (one, two, three...).
+                                <strong>Números Ordinales:</strong> Se usan para indicar la posición o el orden (first, second, third...).
+                            </p>
+                            <h4 class="text-2xl font-semibold text-blue-600 mb-3">Ejemplos:</h4>
+                            <ul class="list-disc list-inside text-gray-700 mb-4">
+                                <li>Cardinal: One apple, two cars.</li>
+                                <li>Ordinal: The first day, the second floor.</li>
+                            </ul>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-numeros.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Números
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_NUMEROS" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Canción de Números
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-numeros.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de Números
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="numeros-ordinales-cardinales">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Cuál es el número ordinal para 2?', options: ['second', 'two', 'twoth'], answer: 'second' },
+                            { type: 'true-false', question: 'Los números cardinales indican posición.', answer: false, feedback: 'Los números cardinales se usan para contar, los ordinales indican posición.' },
+                            { type: 'completion', question: 'El primer mes es _____.', answer: 'January' },
+                            { type: 'multiple-choice', question: '¿Cuál es un número cardinal?', options: ['third', 'one', 'fifth'], answer: 'one' },
+                            { type: 'true-false', question: 'Los números ordinales se usan para contar.', answer: false, feedback: 'Los números ordinales se usan para el orden, no para contar cantidades.' }
+                        ]
+                    },
+                    {
+                        id: 'dias-de-la-semana',
+                        title: 'Días de la semana',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Conocer los días de la semana es fundamental para organizar tu horario y hablar de eventos futuros o pasados.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los días de la semana en inglés son: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. Siempre se escriben con mayúscula inicial.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-dias.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Días de la Semana
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_DIAS" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Canción de los Días
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-dias.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de los Días
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="dias-de-la-semana">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Qué día viene después del lunes?', options: ['Wednesday', 'Tuesday', 'Sunday'], answer: 'Tuesday' },
+                            { type: 'true-false', question: 'Saturday y Sunday son días de semana.', answer: false, feedback: 'Saturday y Sunday son el fin de semana.' },
+                            { type: 'completion', question: 'El primer día de la semana es _____.', answer: 'Sunday' },
+                            { type: 'multiple-choice', question: '¿Qué día es "jueves"?', options: ['Tuesday', 'Thursday', 'Friday'], answer: 'Thursday' },
+                            { type: 'true-false', question: 'Hay 7 días en una semana.', answer: true }
+                        ]
+                    },
+                    {
+                        id: 'meses-del-ano',
+                        title: 'Meses del año',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los meses del año son esenciales para hablar de fechas, cumpleaños y eventos importantes.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los 12 meses del año en inglés son: January, February, March, April, May, June, July, August, September, October, November, December. Siempre se escriben con mayúscula inicial.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-meses.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Meses del Año
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_MESES" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Canción de los Meses
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-meses.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de los Meses
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="meses-del-ano">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Qué mes viene después de enero?', options: ['March', 'February', 'April'], answer: 'February' },
+                            { type: 'true-false', question: 'Hay 10 meses en un año.', answer: false, feedback: 'Hay 12 meses en un año.' },
+                            { type: 'completion', question: 'El último mes del año es _____.', answer: 'December' },
+                            { type: 'multiple-choice', question: '¿Qué mes es "julio"?', options: ['June', 'July', 'August'], answer: 'July' },
+                            { type: 'true-false', question: 'Abril tiene 31 días.', answer: false, feedback: 'Abril tiene 30 días.' }
+                        ]
+                    },
+                    {
+                        id: 'la-hora',
+                        title: 'La hora',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Saber decir la hora en inglés es una habilidad práctica y necesaria para la comunicación diaria.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Para decir la hora, podemos usar el formato de 12 horas (con AM/PM) o frases como "past" (pasado) y "to" (para).
+                            </p>
+                            <h4 class="text-2xl font-semibold text-blue-600 mb-3">Ejemplos:</h4>
+                            <ul class="list-disc list-inside text-gray-700 mb-4">
+                                <li>It's three o'clock. (Son las tres en punto)</li>
+                                <li>It's half past five. (Son las cinco y media)</li>
+                                <li>It's a quarter past ten. (Son las diez y cuarto)</li>
+                                <li>It's a quarter to seven. (Son las siete menos cuarto)</li>
+                            </ul>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-hora.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: La Hora
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_HORA" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Aprendiendo la Hora
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-hora.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de la Hora
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="la-hora">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Cómo se dice 3:00 PM?', options: ['three o\'clock', 'three past noon', 'three in the afternoon'], answer: 'three o\'clock' },
+                            { type: 'true-false', question: 'Half past five significa 5:30.', answer: true },
+                            { type: 'completion', question: 'It\'s a quarter to _____. (4:45)', answer: 'five' },
+                            { type: 'multiple-choice', question: '¿Cuál es correcto para 6:15?', options: ['quarter past six', 'quarter to six', 'six fifteen'], answer: 'quarter past six' },
+                            { type: 'true-false', question: 'AM se refiere al tiempo después del mediodía.', answer: false, feedback: 'AM se refiere a la mañana (antes del mediodía), PM a la tarde/noche (después del mediodía).' }
+                        ]
+                    },
+                    {
+                        id: 'colores',
+                        title: 'Colores más utilizados',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los colores son una de las primeras cosas que aprendemos en cualquier idioma y son esenciales para describir el mundo que nos rodea.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Aquí tienes algunos de los colores más comunes en inglés:
+                            </p>
+                            <ul class="list-disc list-inside text-gray-700 mb-4 grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                <li>Red (Rojo)</li><li>Blue (Azul)</li><li>Yellow (Amarillo)</li><li>Green (Verde)</li>
+                                <li>Black (Negro)</li><li>White (Blanco)</li><li>Orange (Naranja)</li><li>Purple (Morado)</li>
+                                <li>Pink (Rosado)</li><li>Brown (Marrón)</li><li>Gray/Grey (Gris)</li>
+                            </ul>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-colores.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Colores
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_COLORES" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Canción de los Colores
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-colores.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de Colores
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="colores">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Qué color es "red"?', options: ['azul', 'rojo', 'verde'], answer: 'rojo' },
+                            { type: 'true-false', question: '"Yellow" es amarillo.', answer: true },
+                            { type: 'completion', question: 'El color del cielo es _____.', answer: 'blue' },
+                            { type: 'multiple-choice', question: '¿Qué color es "negro"?', options: ['white', 'black', 'brown'], answer: 'black' },
+                            { type: 'true-false', question: '"Green" es morado.', answer: false, feedback: '"Green" es verde, no morado.' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'modulo-2-basico',
+                title: 'Módulo 2: Construyendo Oraciones Básicas',
+                unlocked: false,
+                topics: [
+                    {
+                        id: 'verbos-to-be-have',
+                        title: 'Verbos básicos: "to be", "to have"',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los verbos "to be" (ser/estar) y "to have" (tener) son fundamentales en inglés. Se usan constantemente y son la base para construir muchas oraciones.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>Verbo "To Be" (Ser/Estar):</strong>
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>I am</li><li>You are</li><li>He/She/It is</li><li>We are</li><li>They are</li>
+                                </ul>
+                                <strong>Verbo "To Have" (Tener):</strong>
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>I have</li><li>You have</li><li>He/She/It has</li><li>We have</li><li>They have</li>
+                                </ul>
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-tobe-tohave.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: To Be y To Have
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_TOBE_TOHAVE" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Uso de To Be y To Have
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-tobe-tohave.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación y Ejemplos
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="verbos-to-be-have">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: 'I ___ a student.', options: ['am', 'is', 'are'], answer: 'am' },
+                            { type: 'true-false', question: 'She have a car.', answer: false, feedback: 'Con "She" se usa "has", no "have". Correcto: "She has a car".' },
+                            { type: 'completion', question: 'They ___ happy.', answer: 'are' },
+                            { type: 'multiple-choice', question: 'We ___ two brothers.', options: ['has', 'have', 'is'], answer: 'have' },
+                            { type: 'true-false', question: 'He is a doctor.', answer: true }
+                        ]
+                    },
+                    {
+                        id: 'pronombres-personales',
+                        title: 'Pronombres personales: "I", "you", "he", "she", "it", "we", "they"',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los pronombres personales reemplazan a los sustantivos para evitar repeticiones y hacer las oraciones más fluidas.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los pronombres personales sujeto son: I (yo), You (tú/ustedes), He (él), She (ella), It (ello/a para cosas/animales), We (nosotros), They (ellos/as).
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-pronombres.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Pronombres Personales
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_PRONOMBRES" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Uso de Pronombres
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-pronombres.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de Pronombres
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="pronombres-personales">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '___ am a teacher.', options: ['He', 'She', 'I'], answer: 'I' },
+                            { type: 'true-false', question: 'You is a pronoun.', answer: false, feedback: 'Correcto: "You" es un pronombre, pero la forma del verbo "to be" que le corresponde es "are".' },
+                            { type: 'completion', question: '___ are students.', answer: 'We' },
+                            { type: 'multiple-choice', question: '¿Qué pronombre se refiere a una mujer?', options: ['He', 'It', 'She'], answer: 'She' },
+                            { type: 'true-false', question: 'They se refiere a una sola persona.', answer: false, feedback: '"They" se refiere a varias personas o cosas.' }
+                        ]
+                    },
+                    {
+                        id: 'sustantivos-singular-plural',
+                        title: 'Sustantivos singulares y plurales',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los sustantivos son palabras que nombran personas, lugares, cosas o ideas. Es importante saber cómo formar su plural.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                La mayoría de los sustantivos forman el plural añadiendo "-s". Sin embargo, hay reglas para sustantivos que terminan en -ch, -s, -sh, -x, -z (añaden -es), y sustantivos irregulares (man/men, child/children).
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-sustantivos.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Sustantivos
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_SUSTANTIVOS" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Singular y Plural
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-sustantivos.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de Plurales
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="sustantivos-singular-plural">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: 'Plural de "cat":', options: ['cats', 'caties', 'caten'], answer: 'cats' },
+                            { type: 'true-false', question: 'El plural de "child" es "childs".', answer: false, feedback: 'El plural de "child" es "children".' },
+                            { type: 'completion', question: 'El plural de "man" es _____.', answer: 'men' },
+                            { type: 'multiple-choice', question: '¿Cuál es un sustantivo singular?', options: ['feet', 'mice', 'house'], answer: 'house' },
+                            { type: 'true-false', question: 'Algunos sustantivos tienen la misma forma singular y plural.', answer: true }
+                        ]
+                    },
+                    {
+                        id: 'articulos-a-an',
+                        title: 'Artículos indefinidos A-AN',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los artículos indefinidos "a" y "an" se usan antes de sustantivos singulares contables para referirse a algo no específico.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Usamos <strong>"a"</strong> antes de palabras que empiezan con sonido de consonante (a car, a book).
+                                Usamos <strong>"an"</strong> antes de palabras que empiezan con sonido de vocal (an apple, an hour).
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-articulos.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Artículos A-AN
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_ARTICULOS" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Uso de A y An
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-articulos.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación y Ejemplos
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="articulos-a-an">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '___ apple', options: ['a', 'an'], answer: 'an' },
+                            { type: 'true-false', question: 'Usamos "a" antes de palabras que empiezan con sonido de vocal.', answer: false, feedback: 'Usamos "an" antes de palabras que empiezan con sonido de vocal.' },
+                            { type: 'completion', question: '___ car', answer: 'a' },
+                            { type: 'multiple-choice', question: '¿Cuál es correcto?', options: ['an university', 'a university'], answer: 'a university' },
+                            { type: 'true-false', question: 'Usamos "an" antes de palabras que empiezan con sonido de consonante.', answer: false, feedback: 'Usamos "a" antes de palabras que empiezan con sonido de consonante.' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'modulo-3-expansion',
+                title: 'Módulo 3: Expandiendo la Expresión',
+                unlocked: false,
+                topics: [
+                    {
+                        id: 'adjetivos-adverbios',
+                        title: 'Adjetivos y adverbios',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Adjetivos y adverbios son palabras que añaden detalle a nuestras oraciones, describiendo sustantivos o modificando verbos, adjetivos y otros adverbios.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>Adjetivos:</strong> Describen sustantivos (e.g., beautiful, big, happy).
+                                <strong>Adverbios:</strong> Modifican verbos, adjetivos u otros adverbios (e.g., quickly, very, well). Muchos adverbios se forman añadiendo "-ly" a un adjetivo.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-adjetivos-adverbios.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Adjetivos y Adverbios
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_ADJETIVOS_ADVERBIOS" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Diferencia entre Adjetivos y Adverbios
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-adjetivos-adverbios.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación y Ejemplos
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="adjetivos-adverbios">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Qué palabra describe un sustantivo?', options: ['quickly', 'beautiful', 'run'], answer: 'beautiful' },
+                            { type: 'true-false', question: 'Los adverbios modifican verbos, adjetivos u otros adverbios.', answer: true },
+                            { type: 'completion', question: 'She sings _____. (beautiful)', answer: 'beautifully' },
+                            { type: 'multiple-choice', question: '¿Qué palabra es un adverbio?', options: ['happy', 'slowly', 'big'], answer: 'slowly' },
+                            { type: 'true-false', question: 'Los adjetivos suelen terminar en -ly.', answer: false, feedback: 'Los adverbios suelen terminar en -ly, no los adjetivos.' }
+                        ]
+                    },
+                    {
+                        id: 'preposiciones',
+                        title: 'Preposiciones: "in", "on", "at", "to", "from", etc.',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Las preposiciones son palabras pequeñas pero poderosas que indican relaciones de tiempo, lugar, dirección y más.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Algunas preposiciones comunes y sus usos:
+                                <ul class="list-disc list-inside ml-4">
+                                    <li><strong>In:</strong> dentro de (in the box), meses/años (in July, in 2024), ciudades/países (in London).</li>
+                                    <li><strong>On:</strong> sobre (on the table), días de la semana (on Monday), fechas (on July 20th).</li>
+                                    <li><strong>At:</strong> en un punto específico (at the door), horas (at 3 PM), direcciones (at 123 Main St).</li>
+                                    <li><strong>To:</strong> hacia (go to school), propósito (listen to music).</li>
+                                    <li><strong>From:</strong> origen (from Spain), punto de partida (from 9 to 5).</li>
+                                </ul>
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-preposiciones.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Preposiciones
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_PREPOSICIONES" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Uso de Preposiciones
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-preposiciones.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación y Ejemplos
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="preposiciones">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: 'The book is ___ the table.', options: ['in', 'on', 'at'], answer: 'on' },
+                            { type: 'true-false', question: 'Usamos "at" para horas específicas.', answer: true },
+                            { type: 'completion', question: 'She lives ___ London.', answer: 'in' },
+                            { type: 'multiple-choice', question: '¿Qué preposición significa movimiento hacia?', options: ['from', 'to', 'at'], answer: 'to' },
+                            { type: 'true-false', question: 'He is good at English.', answer: true }
+                        ]
+                    },
+                    {
+                        id: 'conectores',
+                        title: 'Conectores: "and", "but", "because", etc.',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los conectores son palabras o frases que unen ideas, oraciones o párrafos, haciendo que tu discurso sea más coherente y fácil de entender.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Algunos conectores comunes:
+                                <ul class="list-disc list-inside ml-4">
+                                    <li><strong>And:</strong> Para añadir información (I like apples and bananas).</li>
+                                    <li><strong>But:</strong> Para contrastar ideas (It's sunny, but it's cold).</li>
+                                    <li><strong>Because:</strong> Para indicar una razón (I'm happy because I passed the exam).</li>
+                                    <li><strong>So:</strong> Para indicar un resultado (She was tired, so she went to bed).</li>
+                                    <li><strong>Although/Though:</b> Para expresar una concesión (Although it was raining, we went out).</li>
+                                </ul>
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-conectores.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Conectores
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_CONECTORES" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Uso de Conectores
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-conectores.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación y Ejemplos
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="conectores">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: 'I like coffee ___ tea.', options: ['but', 'because', 'and'], answer: 'and' },
+                            { type: 'true-false', question: '"Because" se usa para mostrar contraste.', answer: false, feedback: '"Because" se usa para indicar una razón, no contraste.' },
+                            { type: 'completion', question: 'She is tired, ___ she went to bed early.', answer: 'so' },
+                            { type: 'multiple-choice', question: '¿Qué conector significa "a pesar de"?', options: ['although', 'and', 'because'], answer: 'although' },
+                            { type: 'true-false', question: 'I want to learn English because it is useful.', answer: true }
+                        ]
+                    },
+                    {
+                        id: 'contables-incontables',
+                        title: 'Contables e incontables',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los sustantivos se clasifican en contables e incontables, lo cual afecta cómo usamos artículos y cuantificadores con ellos.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>Sustantivos Contables:</strong> Se pueden contar (one apple, two books). Tienen forma singular y plural.
+                                <strong>Sustantivos Incontables:</strong> No se pueden contar individualmente (water, information, money). No tienen forma plural y se usan con "much" o "some".
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-contables-incontables.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Contables e Incontables
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_CONTABLES_INCONTABLES" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Sustantivos Contables e Incontables
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-contables-incontables.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación y Ejemplos
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="contables-incontables">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Es "water" contable o incontable?', options: ['countable', 'uncountable'], answer: 'uncountable' },
+                            { type: 'true-false', question: '"Apple" es un sustantivo contable.', answer: true },
+                            { type: 'completion', question: 'How much _____ do you need? (sugar)', answer: 'sugar' },
+                            { type: 'multiple-choice', question: '¿Qué sustantivo es contable?', options: ['information', 'money', 'chair'], answer: 'chair' },
+                            { type: 'true-false', question: 'Usamos "many" con sustantivos incontables.', answer: false, feedback: 'Usamos "many" con sustantivos contables, y "much" con incontables.' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'modulo-4-mundo-tiempo',
+                title: 'Módulo 4: Explorando el Mundo y el Tiempo',
+                unlocked: false,
+                topics: [
+                    {
+                        id: 'verbos-regulares-irregulares',
+                        title: 'Verbos regulares e irregulares en presente, pasado y futuro',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los verbos son el corazón de las oraciones. Conocer la diferencia entre regulares e irregulares es crucial para formar correctamente los tiempos pasados.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>Verbos Regulares:</strong> Forman su pasado y participio pasado añadiendo "-ed" (walk -> walked, play -> played).
+                                <strong>Verbos Irregulares:</strong> No siguen una regla fija y cambian su forma de manera impredecible (go -> went -> gone, eat -> ate -> eaten). Deben memorizarse.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-verbos-reg-irreg.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Verbos Regulares e Irregulares
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_VERBOS_REG_IRREG" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Lista de Verbos Irregulares
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-verbos-reg-irreg.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de Verbos
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="verbos-regulares-irregulares">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: 'Pasado de "walk":', options: ['walked', 'walken', 'wolk'], answer: 'walked' },
+                            { type: 'true-false', question: 'El pasado de "go" es "goed".', answer: false, feedback: 'El pasado de "go" es "went".' },
+                            { type: 'completion', question: 'Pasado de "eat": ____', answer: 'ate' },
+                            { type: 'multiple-choice', question: '¿Cuál es un verbo irregular?', options: ['play', 'study', 'run'], answer: 'run' },
+                            { type: 'true-false', question: 'Los verbos regulares forman su pasado añadiendo -ed.', answer: true }
+                        ]
+                    },
+                    {
+                        id: 'tiempos-verbales',
+                        title: 'Tiempos verbales: Presente simple, continuo, pasado simple, futuro simple, etc.',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Los tiempos verbales nos permiten expresar cuándo ocurre una acción. Dominarlos es clave para una comunicación precisa.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>Presente Simple:</strong> Hábitos, rutinas, hechos generales (I work every day).
+                                <strong>Presente Continuo:</strong> Acciones que ocurren ahora (She is reading a book).
+                                <strong>Pasado Simple:</strong> Acciones completadas en el pasado (They visited Paris last year).
+                                <strong>Futuro Simple:</strong> Acciones futuras (I will call you tomorrow).
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-tiempos-verbales.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Tiempos Verbales
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_TIEMPOS_VERBALES" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Explicación de Tiempos
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-tiempos-verbales.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Ejemplos de Tiempos
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="tiempos-verbales">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: 'She ___ every day. (Presente Simple)', options: ['eat', 'eats', 'eating'], answer: 'eats' },
+                            { type: 'true-false', question: 'I am studying now es Presente Continuo.', answer: true },
+                            { type: 'completion', question: 'They ___ to the park yesterday. (go - Pasado Simple)', answer: 'went' },
+                            { type: 'multiple-choice', question: 'Futuro Simple usa:', options: ['will', 'am going to', 'both'], answer: 'both' },
+                            { type: 'true-false', question: 'He played football last week es Presente Simple.', answer: false, feedback: 'He played football last week es Pasado Simple.' }
+                        ]
+                    },
+                    {
+                        id: 'animales',
+                        title: 'Animales más conocidos: perro, gato, pez, serpiente, pájaro, mono, tortuga, otros.',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Aprender el vocabulario de animales te permitirá hablar sobre tus mascotas, la vida silvestre y el mundo natural.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Algunos animales comunes en inglés:
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>Dog (Perro)</li><li>Cat (Gato)</li><li>Fish (Pez)</li><li>Snake (Serpiente)</li>
+                                    <li>Bird (Pájaro)</li><li>Monkey (Mono)</li><li>Turtle (Tortuga)</li><li>Lion (León)</li>
+                                    <li>Elephant (Elefante)</li>
+                                </ul>
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-animales.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Animales
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_ANIMALES" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Sonidos de Animales
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-animales.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Nombres de Animales
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="animales">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Qué es "perro" en inglés?', options: ['cat', 'dog', 'fish'], answer: 'dog' },
+                            { type: 'true-false', question: '"Bird" es pájaro.', answer: true },
+                            { type: 'completion', question: 'Un reptil largo y sin patas es una _____.', answer: 'snake' },
+                            { type: 'multiple-choice', question: '¿Qué animal dice "meow"?', options: ['dog', 'cat', 'monkey'], answer: 'cat' },
+                            { type: 'true-false', question: 'Un "fish" vive en tierra.', answer: false, feedback: 'Un "fish" (pez) vive en el agua.' }
+                        ]
+                    },
+                    {
+                        id: 'partes-cuerpo',
+                        title: 'Partes principales del cuerpo humano',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Conocer las partes del cuerpo humano es esencial para describir personas, hablar de salud y entender instrucciones.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Algunas partes del cuerpo:
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>Head (Cabeza)</li><li>Hair (Cabello)</li><li>Face (Cara)</li><li>Eyes (Ojos)</li>
+                                    <li>Nose (Nariz)</li><li>Mouth (Boca)</li><li>Ears (Orejas)</li><li>Arm (Brazo)</li>
+                                    <li>Hand (Mano)</li><li>Leg (Pierna)</li><li>Foot (Pie)</li><li>Knee (Rodilla)</li>
+                                </ul>
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-cuerpo.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Partes del Cuerpo
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_CUERPO" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Canción de Partes del Cuerpo
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-cuerpo.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de Partes del Cuerpo
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="partes-cuerpo">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Qué es "cabeza" en inglés?', options: ['arm', 'leg', 'head'], answer: 'head' },
+                            { type: 'true-false', question: '"Hand" es pie.', answer: false, feedback: '"Hand" es mano, "foot" es pie.' },
+                            { type: 'completion', question: 'Usas tus _____ para ver.', answer: 'eyes' },
+                            { type: 'multiple-choice', question: '¿Cuál es parte de la pierna?', options: ['finger', 'knee', 'elbow'], answer: 'knee' },
+                            { type: 'true-false', question: 'Tienes dos narices.', answer: false, feedback: 'Normalmente solo tenemos una nariz.' }
+                        ]
+                    },
+                    {
+                        id: 'partes-casa',
+                        title: 'Partes y Objetos de la casa',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Aprender el vocabulario de la casa te permitirá describir tu hogar y los objetos que hay en él.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Algunas partes y objetos de la casa:
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>Living room (Sala)</li><li>Bedroom (Dormitorio)</li><li>Kitchen (Cocina)</li><li>Bathroom (Baño)</li>
+                                    <li>Table (Mesa)</li><li>Chair (Silla)</li><li>Sofa (Sofá)</li><li>Bed (Cama)</li>
+                                    <li>Refrigerator (Refrigerador)</li>
+                                </ul>
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-casa.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: La Casa
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_CASA" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Recorrido por la Casa
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-casa.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Nombres de Objetos de la Casa
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="partes-casa">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Qué es "cocina" en inglés?', options: ['bedroom', 'bathroom', 'kitchen'], answer: 'kitchen' },
+                            { type: 'true-false', question: '"Chair" es silla.', answer: true },
+                            { type: 'completion', question: 'Duermes en el _____.', answer: 'bedroom' },
+                            { type: 'multiple-choice', question: '¿Cuál es un objeto en la sala?', options: ['bed', 'sofa', 'stove'], answer: 'sofa' },
+                            { type: 'true-false', question: 'Un "refrigerator" es para ropa.', answer: false, feedback: 'Un "refrigerator" es para comida.' }
+                        ]
+                    },
+                    {
+                        id: 'comida',
+                        title: 'Comida: frutas, vegetales, otros',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Hablar de comida es una parte fundamental de la vida diaria. Aprende vocabulario para frutas, vegetales y otros alimentos.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Algunos ejemplos de comida:
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>Fruits: Apple (Manzana), Banana (Plátano), Orange (Naranja)</li>
+                                    <li>Vegetables: Carrot (Zanahoria), Potato (Papa), Tomato (Tomate)</li>
+                                    <li>Other food: Bread (Pan), Cheese (Queso), Milk (Leche)</li>
+                                </ul>
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-comida.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Comida
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_COMIDA" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Nombres de Comidas
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-comida.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de Comidas
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="comida">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Qué es "manzana" en inglés?', options: ['banana', 'orange', 'apple'], answer: 'apple' },
+                            { type: 'true-false', question: '"Carrot" es zanahoria.', answer: true },
+                            { type: 'completion', question: 'Una fruta amarilla que les gusta a los monos es un _____.', answer: 'banana' },
+                            { type: 'multiple-choice', question: '¿Cuál es un vegetal?', options: ['strawberry', 'potato', 'grape'], answer: 'potato' },
+                            { type: 'true-false', question: '"Bread" es una fruta.', answer: false, feedback: '"Bread" es pan, no una fruta.' }
+                        ]
+                    },
+                    {
+                        id: 'lugares-ciudad',
+                        title: 'Lugares de la ciudad, plazas, tiendas, banco, otros',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Conocer los nombres de lugares en la ciudad te ayudará a dar direcciones, preguntar por ubicaciones y hablar de tus actividades diarias.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Algunos lugares comunes en la ciudad:
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>Park (Parque)</li><li>Store/Shop (Tienda)</li><li>Bank (Banco)</li><li>School (Escuela)</li>
+                                    <li>Hospital (Hospital)</li><li>Restaurant (Restaurante)</li><li>Library (Biblioteca)</li>
+                                </ul>
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-lugares-ciudad.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Lugares de la Ciudad
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_LUGARES_CIUDAD" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Recorrido por la Ciudad
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-lugares-ciudad.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de Lugares
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="lugares-ciudad">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿A dónde vas para depositar dinero?', options: ['school', 'bank', 'park'], answer: 'bank' },
+                            { type: 'true-false', question: '"Shop" es tienda.', answer: true },
+                            { type: 'completion', question: 'Un área abierta grande en una ciudad es una _____.', answer: 'square' },
+                            { type: 'multiple-choice', question: '¿Cuál es un lugar para comprar cosas?', options: ['library', 'hospital', 'store'], answer: 'store' },
+                            { type: 'true-false', question: 'Un "museum" es donde compras comida.', answer: false, feedback: 'Un "museum" (museo) es para ver exposiciones, no para comprar comida.' }
+                        ]
+                    },
+                    {
+                        id: 'transporte',
+                        title: 'Transporte: Avión, carro, bicicleta, otros.',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                El vocabulario de transporte es fundamental para hablar de viajes, cómo te mueves y planificar rutas.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Algunos medios de transporte comunes:
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>Car (Carro)</li><li>Bus (Autobús)</li><li>Train (Tren)</li><li>Airplane (Avión)</li>
+                                    <li>Bicycle (Bicicleta)</li><li>Motorcycle (Motocicleta)</li><li>Boat (Barco)</li>
+                                </ul>
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-transporte.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Transporte
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_TRANSPORTE" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Medios de Transporte
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-transporte.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de Transportes
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="transporte">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Qué es "carro" en inglés?', options: ['bike', 'plane', 'car'], answer: 'car' },
+                            { type: 'true-false', question: '"Bicycle" es bicicleta.', answer: true },
+                            { type: 'completion', question: 'Vuelas en un _____.', answer: 'airplane' },
+                            { type: 'multiple-choice', question: '¿Cuál es un vehículo de dos ruedas?', options: ['bus', 'train', 'bicycle'], answer: 'bicycle' },
+                            { type: 'true-false', question: 'Un "boat" viaja por tierra.', answer: false, feedback: 'Un "boat" (barco) viaja por agua.' }
+                        ]
+                    },
+                    {
+                        id: 'actividades-ocio',
+                        title: 'Actividades de ocio: Hobbies, deportes, películas, música.',
+                        content: `
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Introducción</h3>
+                            <p class="text-gray-700 mb-4">
+                                Hablar de tus hobbies y actividades de ocio es una excelente manera de conectar con otras personas y practicar tu inglés en contextos informales.
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Explicación</h3>
+                            <p class="text-gray-700 mb-4">
+                                Algunas actividades de ocio comunes:
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>Reading (Leer)</li><li>Listening to music (Escuchar música)</li><li>Watching movies (Ver películas)</li>
+                                    <li>Playing sports (Practicar deportes) - e.g., football, basketball</li>
+                                    <li>Cooking (Cocinar)</li><li>Painting (Pintar)</li><li>Traveling (Viajar)</li>
+                                </ul>
+                            </p>
+                            <h3 class="text-3xl font-bold text-blue-700 mb-4">Recursos Pedagógicos</h3>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <a href="https://www.ejemplo.com/documento-ocio.pdf" target="_blank" class="resource-link">
+                                    <i class="fas fa-file-alt"></i> Documento: Actividades de Ocio
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=VIDEO_OCIO" target="_blank" class="resource-link">
+                                    <i class="fab fa-youtube"></i> Video: Hobbies y Pasatiempos
+                                </a>
+                                <a href="https://www.ejemplo.com/audio-ocio.mp3" target="_blank" class="resource-link">
+                                    <i class="fas fa-volume-up"></i> Audio: Pronunciación de Actividades
+                                </a>
+                            </div>
+                            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg mt-4 start-evaluation-btn" data-topic-id="actividades-ocio">
+                                <i class="fas fa-clipboard-check mr-2"></i>Realizar Evaluación
+                            </button>
+                        `,
+                        evaluation: [
+                            { type: 'multiple-choice', question: '¿Cuál es un deporte?', options: ['reading', 'swimming', 'cooking'], answer: 'swimming' },
+                            { type: 'true-false', question: '"Music" es música.', answer: true },
+                            { type: 'completion', question: 'Ver una película es ir al _____.', answer: 'cinema' },
+                            { type: 'multiple-choice', question: '¿Cuál es un hobby?', options: ['working', 'sleeping', 'painting'], answer: 'painting' },
+                            { type: 'true-false', question: 'Jugar videojuegos es una actividad de ocio.', answer: true }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        let loggedInUser = null; // Stores the logged-in user's email
+        let studentProgress = {}; // Stores student progress: { 'topicId': { score: X, passed: true/false, attempts: Y } }
+        let currentEvaluationTimer = null; // For the evaluation timer
+        let currentTopicId = null; // To know which topic is active
+
+        // --- Elementos del DOM ---
+        const sections = {
+            intro: document.getElementById('intro-section'),
+            registration: document.getElementById('registration-section'),
+            login: document.getElementById('login-section'),
+            lmsDashboard: document.getElementById('lms-dashboard')
+        };
+
+        const navButtons = {
+            home: document.getElementById('nav-home'),
+            register: document.getElementById('nav-register'),
+            login: document.getElementById('nav-login'),
+            logout: document.getElementById('nav-logout')
+        };
+
+        const introButtons = {
+            exploreFirstTopic: document.getElementById('explore-first-topic'),
+            introLogin: document.getElementById('intro-login-btn'),
+            introRegister: document.getElementById('intro-register-btn')
+        };
+
+        const registrationForm = document.getElementById('registration-form');
+        const regLoginBtn = document.getElementById('reg-login-btn');
+
+        const loginForm = document.getElementById('login-form');
+        const togglePasswordVisibilityBtn = document.getElementById('toggle-password-visibility');
+        const loginPasswordInput = document.getElementById('login-password');
+        const loginRegisterBtn = document.getElementById('login-register-btn');
+
+        const moduleNavigation = document.getElementById('module-navigation');
+        const moduleContent = document.getElementById('module-content');
+        const progressDisplay = document.getElementById('progress-display');
+        const changePasswordBtn = document.getElementById('change-password-btn');
+
+        const messageModal = document.getElementById('message-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMessage = document.getElementById('modal-message');
+        const modalOkButton = document.getElementById('modal-ok-button');
+        const closeButtons = document.querySelectorAll('.close-button');
+
+        const passwordChangeModal = document.getElementById('password-change-modal');
+        const passwordChangeForm = document.getElementById('password-change-form');
+
+        // --- Utility Functions ---
+
+        /**
+         * Muestra una sección específica y oculta todas las demás.
+         * @param {string} sectionId - El ID de la sección a mostrar.
+         */
+        function showSection(sectionId) {
+            for (const key in sections) {
+                if (sections.hasOwnProperty(key)) {
+                    sections[key].classList.add('hidden');
+                }
+            }
+            sections[sectionId].classList.remove('hidden');
+
+            // Actualizar botones de navegación
+            for (const key in navButtons) {
+                if (navButtons.hasOwnProperty(key)) {
+                    navButtons[key].classList.remove('bg-blue-500', 'bg-blue-600', 'text-white', 'shadow');
+                    navButtons[key].classList.add('hover:bg-blue-700');
+                }
+            }
+            if (navButtons[sectionId]) {
+                navButtons[sectionId].classList.add('bg-blue-500', 'bg-blue-600', 'text-white', 'shadow');
+                navButtons[sectionId].classList.remove('hover:bg-blue-700');
+            }
+            // Manejo especial para logout
+            if (sectionId === 'lmsDashboard') {
+                navButtons.login.classList.add('hidden');
+                navButtons.register.classList.add('hidden');
+                navButtons.logout.classList.remove('hidden');
+            } else {
+                navButtons.login.classList.remove('hidden');
+                navButtons.register.classList.remove('hidden');
+                navButtons.logout.classList.add('hidden');
+            }
+        }
+
+        /**
+         * Muestra un modal con un mensaje.
+         * @param {string} title - Título del modal.
+         * @param {string} message - Mensaje a mostrar.
+         * @param {function} [onOk=null] - Función a ejecutar cuando se presiona Aceptar.
+         */
+        function showMessageModal(title, message, onOk = null) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            messageModal.style.display = 'flex'; // Usar flex para centrar
+            modalOkButton.onclick = () => {
+                messageModal.style.display = 'none';
+                if (onOk) onOk();
+            };
+        }
+
+        /**
+         * Realiza una llamada a Google Apps Script.
+         * @param {object} payload - Los datos a enviar al script.
+         * @returns {Promise<object>} - La respuesta del script.
+         */
+        async function callAppsScript(payload) {
+            try {
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Necesario para evitar errores CORS en algunos entornos de Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                // Apps Script con 'no-cors' no permite leer la respuesta directamente.
+                // Para depuración, puedes cambiar 'no-cors' a 'cors' y desplegar Apps Script
+                // con CORS habilitado (ver documentación de Apps Script).
+                // Para esta demo, asumimos que la llamada se procesa correctamente en el backend.
+                showMessageModal('Procesando...', 'Tu solicitud está siendo procesada. Por favor, espera.');
+                return { success: true, message: 'Solicitud enviada. Revisa tu correo o espera la confirmación.' };
+
+            } catch (error) {
+                console.error('Error al llamar a Apps Script:', error);
+                showMessageModal('Error', 'Hubo un problema al conectar con el servidor. Inténtalo de nuevo más tarde.');
+                return { success: false, message: 'Error de conexión.' };
+            }
+        }
+
+        /**
+         * Actualiza la URL de Google Apps Script en el cliente después de que el usuario la haya proporcionado.
+         * @param {string} url - La URL de la aplicación web de Google Apps Script.
+         */
+        function updateAppsScriptUrl(url) {
+            if (url && url !== 'TU_URL_DE_APPS_SCRIPT_AQUI') {
+                GOOGLE_APPS_SCRIPT_URL = url;
+                console.log('URL de Google Apps Script actualizada:', GOOGLE_APPS_SCRIPT_URL);
+                showMessageModal('URL Actualizada', 'La URL de Google Apps Script ha sido configurada correctamente. ¡Ya puedes registrarte e iniciar sesión!');
+            } else {
+                showMessageModal('Atención', 'Por favor, introduce la URL de tu Google Apps Script en el código JavaScript para que la aplicación funcione correctamente.');
+            }
+        }
+
+
+        // --- Funciones de Autenticación y Registro ---
+
+        /**
+         * Maneja el registro de nuevos estudiantes.
+         * @param {Event} event - El evento de envío del formulario.
+         */
+        async function handleRegistration(event) {
+            event.preventDefault();
+            const formData = new FormData(registrationForm);
+            const data = Object.fromEntries(formData.entries());
+            data.action = 'register';
+            data.timestamp = new Date().toLocaleString(); // Fecha y hora de registro
+
+            // Validar que la URL de Apps Script esté configurada
+            if (GOOGLE_APPS_SCRIPT_URL === 'TU_URL_DE_APPS_SCRIPT_AQUI') {
+                showMessageModal('Error de Configuración', 'Por favor, configura la URL de tu Google Apps Script en el código JavaScript (variable GOOGLE_APPS_SCRIPT_URL) para poder registrarte.');
+                return;
+            }
+
+            showMessageModal('Registrando...', 'Estamos procesando tu inscripción. Recibirás un correo con tu contraseña si tu registro es aprobado.');
+            const result = await callAppsScript(data);
+            if (result.success) {
+                // El mensaje de éxito ya se muestra en callAppsScript
+                registrationForm.reset();
+                showSection('login'); // Sugerir ir a login
+            } else {
+                // El mensaje de error ya se muestra en callAppsScript
+            }
+        }
+
+        /**
+         * Maneja el inicio de sesión de los estudiantes.
+         * @param {Event} event - El evento de envío del formulario.
+         */
+        async function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            // Validar que la URL de Apps Script esté configurada
+            if (GOOGLE_APPS_SCRIPT_URL === 'TU_URL_DE_APPS_SCRIPT_AQUI') {
+                showMessageModal('Error de Configuración', 'Por favor, configura la URL de tu Google Apps Script en el código JavaScript (variable GOOGLE_APPS_SCRIPT_URL) para poder iniciar sesión.');
+                return;
+            }
+
+            showMessageModal('Iniciando Sesión...', 'Verificando tus credenciales...');
+            try {
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'login', email, password }),
+                });
+                const result = await response.json(); // Apps Script debe devolver JSON
+
+                if (result.success) {
+                    loggedInUser = email;
+                    studentProgress = result.progress || {}; // Cargar progreso del estudiante
+                    showMessageModal('¡Bienvenido!', `Hola, ${email}. Has iniciado sesión correctamente.`, () => {
+                        showSection('lmsDashboard');
+                        renderModuleNavigation();
+                        updateProgressDisplay();
+                        // Load the first topic if none is active
+                        if (!currentTopicId) {
+                            loadTopicContent('saludos-despedidas');
+                            // Manually activate the first topic link (Saludos y Despedidas)
+                            // This part is handled by the exploreFirstTopic button logic now
+                        }
+                    });
+                } else {
+                    showMessageModal('Error de Inicio de Sesión', result.message || 'Credenciales incorrectas o usuario no aprobado.');
+                }
+            } catch (error) {
+                console.error('Error al iniciar sesión:', error);
+                showMessageModal('Error', 'Hubo un problema al conectar con el servidor. Inténtalo de nuevo más tarde.');
+            }
+        }
+
+        /**
+         * Maneja el cambio de contraseña.
+         * @param {Event} event - El evento de envío del formulario.
+         */
+        async function handleChangePassword(event) {
+            event.preventDefault();
+            const currentPassword = document.getElementById('current-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            const confirmNewPassword = document.getElementById('confirm-new-password').value;
+
+            if (newPassword !== confirmNewPassword) {
+                showMessageModal('Error', 'Las nuevas contraseñas no coinciden.');
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                showMessageModal('Error', 'La nueva contraseña debe tener al menos 6 caracteres.');
+                return;
+            }
+
+            showMessageModal('Cambiando Contraseña...', 'Procesando tu solicitud...');
+            try {
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'changePassword',
+                        email: loggedInUser,
+                        currentPassword,
+                        newPassword
+                    }),
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    showMessageModal('Éxito', 'Tu contraseña ha sido cambiada correctamente.', () => {
+                        passwordChangeModal.style.display = 'none';
+                        passwordChangeForm.reset();
+                    });
+                } else {
+                    showMessageModal('Error', result.message || 'No se pudo cambiar la contraseña. Verifica tu contraseña actual.');
+                }
+            } catch (error) {
+                console.error('Error al cambiar contraseña:', error);
+                showMessageModal('Error', 'Hubo un problema al conectar con el servidor. Inténtalo de nuevo más tarde.');
+            }
+        }
+
+        /**
+         * Cierra la sesión del usuario.
+         */
+        function logout() {
+            loggedInUser = null;
+            studentProgress = {};
+            showSection('intro');
+            showMessageModal('Sesión Cerrada', 'Has cerrado tu sesión exitosamente.');
+        }
+
+        // --- Funciones de Navegación y Contenido ---
+
+        /**
+         * Genera los enlaces de navegación de los módulos en el sidebar.
+         */
+        function renderModuleNavigation() {
+            moduleNavigation.innerHTML = '';
+            courseModules.forEach(module => {
+                const moduleContainer = document.createElement('div');
+                moduleContainer.classList.add('mb-4', 'rounded-lg', 'overflow-hidden', 'bg-blue-100', 'module-container');
+                moduleContainer.dataset.moduleId = module.id; // Add data attribute for module ID
+
+                const moduleHeader = document.createElement('button');
+                moduleHeader.classList.add('w-full', 'flex', 'justify-between', 'items-center', 'py-3', 'px-4', 'font-bold', 'text-blue-800', 'bg-blue-200', 'hover:bg-blue-300', 'transition', 'duration-200', 'rounded-t-lg', 'module-header');
+                moduleHeader.innerHTML = `
+                    <span>${module.title}</span>
+                    <i class="fas fa-chevron-down transform transition-transform duration-200"></i>
+                `;
+                moduleContainer.appendChild(moduleHeader);
+
+                const topicsList = document.createElement('div');
+                topicsList.classList.add('hidden', 'bg-white', 'rounded-b-lg', 'border-t', 'border-blue-100'); // Hidden by default
+
+                module.topics.forEach(topic => {
+                    const topicLink = document.createElement('button');
+                    topicLink.classList.add('topic-link', 'block', 'w-full', 'text-left', 'py-3', 'px-4', 'rounded-lg', 'transition', 'duration-200', 'text-gray-700', 'hover:bg-blue-50');
+                    topicLink.dataset.moduleId = module.id; // Store module ID
+                    topicLink.dataset.topicId = topic.id;
+                    topicLink.textContent = topic.title;
+
+                    let isTopicUnlocked = module.unlocked; // Topic is unlocked if its module is unlocked
+
+                    if (!isTopicUnlocked && !loggedInUser) {
+                        topicLink.classList.add('opacity-50', 'cursor-not-allowed');
+                        topicLink.title = 'Inicia sesión para desbloquear este módulo';
+                    } else if (!isTopicUnlocked && loggedInUser) {
+                        // Check if previous module is completed to unlock this one
+                        const currentModuleIndex = courseModules.findIndex(m => m.id === module.id);
+                        if (currentModuleIndex > 0) {
+                            const prevModule = courseModules[currentModuleIndex - 1];
+                            let allPrevTopicsPassed = true;
+                            for (const prevTopic of prevModule.topics) {
+                                if (!studentProgress[prevTopic.id] || !studentProgress[prevTopic.id].passed) {
+                                    allPrevTopicsPassed = false;
+                                    break;
+                                }
+                            }
+                            if (!allPrevTopicsPassed) {
+                                isTopicUnlocked = false; // Keep it locked if previous module not passed
+                                topicLink.classList.add('opacity-50', 'cursor-not-allowed');
+                                topicLink.title = 'Completa el módulo anterior para desbloquear este.';
+                            } else {
+                                isTopicUnlocked = true; // Unlock if previous module is passed
+                            }
+                        }
+                    }
+
+                    if (isTopicUnlocked && loggedInUser && studentProgress[topic.id] && studentProgress[topic.id].passed) {
+                        topicLink.classList.add('bg-green-100', 'text-green-800', 'font-semibold'); // Indicate approved topic
+                    }
+
+                    topicLink.addEventListener('click', () => {
+                        if (!isTopicUnlocked && !loggedInUser) {
+                            showMessageModal('Módulo Bloqueado', 'Por favor, inicia sesión para acceder a este módulo.');
+                            return;
+                        }
+                        if (!isTopicUnlocked && loggedInUser) {
+                            showMessageModal('Módulo Bloqueado', 'Completa los módulos anteriores para acceder a este tema.');
+                            return;
+                        }
+                        loadTopicContent(topic.id);
+                        // Remove 'active' class from all topic links and add it to the current one
+                        document.querySelectorAll('.topic-link').forEach(btn => btn.classList.remove('active', 'bg-blue-500', 'text-white'));
+                        topicLink.classList.add('active', 'bg-blue-500', 'text-white', 'hover:bg-blue-600');
+                    });
+                    topicsList.appendChild(topicLink);
+                });
+
+                moduleContainer.appendChild(topicsList);
+                moduleNavigation.appendChild(moduleContainer);
+
+                // Toggle functionality for module headers
+                moduleHeader.addEventListener('click', () => {
+                    const icon = moduleHeader.querySelector('i');
+                    topicsList.classList.toggle('hidden');
+                    icon.classList.toggle('fa-chevron-down');
+                    icon.classList.toggle('fa-chevron-up');
+                });
+            });
+        }
+
+        /**
+         * Carga y muestra el contenido de un tema específico.
+         * @param {string} topicId - El ID del tema a cargar.
+         */
+        function loadTopicContent(topicId) {
+            currentTopicId = topicId;
+            let topicData = null;
+            let parentModuleId = null;
+
+            // Find the topic data and its parent module
+            for (const module of courseModules) {
+                const foundTopic = module.topics.find(t => t.id === topicId);
+                if (foundTopic) {
+                    topicData = foundTopic;
+                    parentModuleId = module.id;
+                    break;
+                }
+            }
+
+            if (!topicData) {
+                moduleContent.innerHTML = `<h2 class="text-4xl font-bold text-red-600 mb-6">Tema no encontrado</h2><p class="text-lg text-gray-600">El tema "${topicId}" no existe.</p>`;
+                return;
+            }
+
+            // Display the main topic content
+            moduleContent.innerHTML = `
+                <h2 class="text-4xl font-bold text-blue-800 mb-6">${topicData.title}</h2>
+                <div class="prose max-w-none text-gray-700 leading-relaxed">
+                    ${topicData.content}
+                </div>
+            `;
+
+            // Add listener for the evaluation button if it exists
+            const startEvaluationBtn = moduleContent.querySelector('.start-evaluation-btn');
+            if (startEvaluationBtn) {
+                startEvaluationBtn.addEventListener('click', () => renderEvaluation(topicId));
+            } else if (topicId === 'saludos-despedidas') { // Special case for the intro topic
+                document.getElementById('start-evaluation-saludos').addEventListener('click', () => renderEvaluation(topicId));
+            }
+        }
+
+        /**
+         * Renderiza la evaluación para un tema dado.
+         * @param {string} topicId - El ID del tema cuya evaluación se va a renderizar.
+         */
+        function renderEvaluation(topicId) {
+            let topicData = null;
+            for (const module of courseModules) {
+                const foundTopic = module.topics.find(t => t.id === topicId);
+                if (foundTopic) {
+                    topicData = foundTopic;
+                    break;
+                }
+            }
+
+            if (!topicData || !topicData.evaluation) {
+                showMessageModal('Error', 'No hay evaluación disponible para este tema.');
+                return;
+            }
+
+            let evaluationHtml = `
+                <h3 class="text-3xl font-bold text-blue-700 mb-6">Evaluación: ${topicData.title}</h3>
+                <div id="timer" class="text-xl font-bold text-red-600 mb-4 text-center">Tiempo restante: 15:00</div>
+                <form id="evaluation-form" class="space-y-6">
+            `;
+
+            topicData.evaluation.forEach((item, index) => {
+                evaluationHtml += `<div class="evaluation-item">`;
+                evaluationHtml += `<label>${index + 1}. ${item.question}</label>`;
+                if (item.type === 'multiple-choice') {
+                    item.options.forEach((option, optIndex) => {
+                        evaluationHtml += `
+                            <div class="flex items-center mb-2">
+                                <input type="radio" id="q${index}-opt${optIndex}" name="q${index}" value="${option}" class="mr-2">
+                                <label for="q${index}-opt${optIndex}" class="text-gray-700">${option}</label>
+                            </div>
+                        `;
+                    });
+                } else if (item.type === 'true-false') {
+                    evaluationHtml += `
+                        <div class="flex items-center mb-2">
+                            <input type="radio" id="q${index}-true" name="q${index}" value="true" class="mr-2">
+                            <label for="q${index}-true" class="text-gray-700">Verdadero</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="q${index}-false" name="q${index}" value="false" class="mr-2">
+                            <label for="q${index}-false" class="text-gray-700">Falso</label>
+                        </div>
+                    `;
+                } else if (item.type === 'completion') {
+                    evaluationHtml += `
+                        <input type="text" id="q${index}-completion" name="q${index}" placeholder="Escribe tu respuesta aquí" class="w-full p-2 border rounded-md">
+                    `;
+                }
+                evaluationHtml += `</div>`;
+            });
+
+            evaluationHtml += `
+                    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full shadow-lg w-full">
+                        <i class="fas fa-paper-plane mr-2"></i>Enviar Evaluación
+                    </button>
+                </form>
+            `;
+
+            moduleContent.innerHTML = evaluationHtml;
+
+            // Start timer
+            const timerDisplay = document.getElementById('timer');
+            startEvaluationTimer(15 * 60, timerDisplay, topicId); // 15 minutes
+
+            // Add listener for evaluation submission
+            document.getElementById('evaluation-form').addEventListener('submit', (e) => submitEvaluation(e, topicId));
+        }
+
+        /**
+         * Inicia el temporizador de la evaluación.
+         * @param {number} duration - Duración en segundos.
+         * @param {HTMLElement} display - Elemento DOM para mostrar el tiempo.
+         * @param {string} topicId - ID del tema para la evaluación.
+         */
+        function startEvaluationTimer(duration, display, topicId) {
+            let timer = duration;
+            let minutes, seconds;
+
+            // Limpiar cualquier temporizador previo
+            if (currentEvaluationTimer) {
+                clearInterval(currentEvaluationTimer);
+            }
+
+            currentEvaluationTimer = setInterval(() => {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = `Tiempo restante: ${minutes}:${seconds}`;
+
+                if (--timer < 0) {
+                    clearInterval(currentEvaluationTimer);
+                    showMessageModal('¡Tiempo Agotado!', 'Tu tiempo para la evaluación ha terminado. Se enviarán tus respuestas actuales.', () => {
+                        submitEvaluation(new Event('submit'), topicId, true); // Forzar envío
+                    });
+                }
+            }, 1000);
+        }
+
+        /**
+         * Envía y califica la evaluación.
+         * @param {Event} event - El evento de envío del formulario.
+         * @param {string} topicId - El ID del tema de la evaluación.
+         * @param {boolean} [timedOut=false] - Indica si la evaluación se envió por tiempo agotado.
+         */
+        async function submitEvaluation(event, topicId, timedOut = false) {
+            event.preventDefault();
+            clearInterval(currentEvaluationTimer); // Detener el temporizador
+
+            let topicData = null;
+            let parentModule = null;
+            let topicIndexInModule = -1;
+
+            // Find the topic data and its parent module
+            for (const module of courseModules) {
+                const foundTopicIndex = module.topics.findIndex(t => t.id === topicId);
+                if (foundTopicIndex !== -1) {
+                    topicData = module.topics[foundTopicIndex];
+                    parentModule = module;
+                    topicIndexInModule = foundTopicIndex;
+                    break;
+                }
+            }
+
+            if (!topicData || !topicData.evaluation) {
+                showMessageModal('Error', 'No hay evaluación disponible para este tema.');
+                return;
+            }
+
+            const form = document.getElementById('evaluation-form');
+            let score = 0;
+            const answers = {};
+            const feedbackMessages = [];
+
+            topicData.evaluation.forEach((item, index) => {
+                let userAnswer;
+                if (item.type === 'multiple-choice' || item.type === 'true-false') {
+                    const selected = form.querySelector(`input[name="q${index}"]:checked`);
+                    userAnswer = selected ? selected.value : null;
+                    if (item.type === 'true-false') {
+                        userAnswer = userAnswer === 'true'; // Convert to boolean
+                    }
+                } else if (item.type === 'completion') {
+                    userAnswer = form.querySelector(`input[name="q${index}"]`).value.trim();
+                }
+
+                answers[item.question] = userAnswer; // Save user's answer
+
+                let isCorrect = false;
+                if (item.type === 'completion') {
+                    isCorrect = userAnswer.toLowerCase() === item.answer.toLowerCase();
+                } else {
+                    isCorrect = userAnswer === item.answer;
+                }
+
+                if (isCorrect) {
+                    score++;
+                } else if (item.feedback) {
+                    feedbackMessages.push(`Pregunta ${index + 1}: ${item.feedback}`);
+                }
+            });
+
+            const totalQuestions = topicData.evaluation.length;
+            const percentage = (score / totalQuestions) * 100;
+            const passed = score >= 3; // Approved with 3/5 or more
+
+            // Update local progress for the topic
+            if (!studentProgress[topicId]) {
+                studentProgress[topicId] = { attempts: 0, passed: false, score: 0 };
+            }
+            studentProgress[topicId].attempts++;
+            studentProgress[topicId].score = score;
+            if (passed) {
+                studentProgress[topicId].passed = true;
+            }
+
+            // Check if all topics in the current module are passed to unlock the next module
+            let allTopicsInCurrentModulePassed = true;
+            if (parentModule) {
+                for (const topic of parentModule.topics) {
+                    if (!studentProgress[topic.id] || !studentProgress[topic.id].passed) {
+                        allTopicsInCurrentModulePassed = false;
+                        break;
+                    }
+                }
+
+                if (allTopicsInCurrentModulePassed) {
+                    const moduleIndex = courseModules.findIndex(m => m.id === parentModule.id);
+                    if (moduleIndex !== -1 && moduleIndex + 1 < courseModules.length) {
+                        courseModules[moduleIndex + 1].unlocked = true; // Unlock the next module
+                        showMessageModal('¡Módulo Desbloqueado!', `¡Felicidades! Has completado el "${parentModule.title}" y desbloqueado el siguiente módulo.`, () => {
+                            updateProgressDisplay();
+                            renderModuleNavigation(); // Re-render to show the unlocked module
+                        });
+                    }
+                }
+            }
+
+            updateProgressDisplay();
+            renderModuleNavigation(); // Re-render to update topic status
+
+            let feedbackTitle = passed ? '¡Felicidades!' : '¡Sigue practicando!';
+            let feedbackText = `Has obtenido ${score} de ${totalQuestions} respuestas correctas (${percentage.toFixed(0)}%).`;
+            if (passed) {
+                feedbackText += ' ¡Has aprobado este tema! 🎉';
+            } else {
+                feedbackText += ' Necesitas 3 o más para aprobar. Puedes intentarlo de nuevo.';
+                if (feedbackMessages.length > 0) {
+                    feedbackText += '\n\nSugerencias: \n' + feedbackMessages.join('\n');
+                }
+            }
+
+            showMessageModal(feedbackTitle, feedbackText, () => {
+                if (!passed) {
+                    // If not approved, allow retrying the evaluation
+                    const retryButton = document.createElement('button');
+                    retryButton.textContent = 'Repetir Evaluación';
+                    retryButton.classList.add('bg-blue-500', 'hover:bg-blue-600', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded-full', 'shadow', 'mt-4');
+                    retryButton.addEventListener('click', () => renderEvaluation(topicId));
+                    moduleContent.appendChild(retryButton);
+                }
+            });
+
+            // Send results to Google Apps Script
+            if (loggedInUser) {
+                try {
+                    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            action: 'submitEvaluation',
+                            email: loggedInUser,
+                            topicId: topicId, // Changed from moduleId to topicId
+                            score: score,
+                            totalQuestions: totalQuestions,
+                            passed: passed,
+                            attempts: studentProgress[topicId].attempts,
+                            timestamp: new Date().toLocaleString(),
+                            answers: answers
+                        }),
+                    });
+                    const result = await response.json();
+                    if (!result.success) {
+                        console.error('Error al enviar resultados a Sheets:', result.message);
+                    }
+                } catch (error) {
+                    console.error('Error de red al enviar resultados a Sheets:', error);
+                }
+            }
+        }
+
+        /**
+         * Actualiza la visualización del progreso del estudiante en el sidebar.
+         */
+        function updateProgressDisplay() {
+            progressDisplay.innerHTML = '';
+            if (loggedInUser) {
+                courseModules.forEach(module => {
+                    const moduleTitle = document.createElement('li');
+                    moduleTitle.classList.add('font-bold', 'text-blue-700', 'mt-2');
+                    moduleTitle.textContent = module.title;
+                    progressDisplay.appendChild(moduleTitle);
+
+                    module.topics.forEach(topic => {
+                        const progress = studentProgress[topic.id];
+                        let status = 'No iniciado';
+                        let scoreInfo = '';
+
+                        if (progress) {
+                            status = progress.passed ? 'Aprobado ✅' : 'Reprobado ❌';
+                            scoreInfo = ` (Intento ${progress.attempts || 0}, ${progress.score || 0}/${topic.evaluation.length})`;
+                        }
+
+                        const listItem = document.createElement('li');
+                        listItem.classList.add('mb-1', 'ml-4', 'text-gray-700', 'text-sm');
+                        listItem.innerHTML = `<span class="font-semibold">${topic.title}:</span> ${status}${scoreInfo}`;
+                        progressDisplay.appendChild(listItem);
+                    });
+                });
+            } else {
+                progressDisplay.textContent = 'Inicia sesión para ver tu progreso.';
+            }
+        }
+
+        // --- Event Listeners ---
+
+        // Main navigation
+        navButtons.home.addEventListener('click', () => showSection('intro'));
+        navButtons.register.addEventListener('click', () => showSection('registration'));
+        navButtons.login.addEventListener('click', () => showSection('login'));
+        navButtons.logout.addEventListener('click', logout);
+
+        // Intro section buttons
+        introButtons.exploreFirstTopic.addEventListener('click', () => {
+            showSection('lmsDashboard');
+            renderModuleNavigation(); // This renders the module and topic buttons
+
+            // Now, find the specific topic link for 'saludos-despedidas'
+            const firstTopicLink = document.querySelector('.topic-link[data-topic-id="saludos-despedidas"]');
+            if (firstTopicLink) {
+                // Manually activate the first module header to show its topics
+                const firstModuleHeader = document.querySelector('.module-container[data-module-id="modulo-1-primeros-pasos"] .module-header');
+                if (firstModuleHeader) {
+                    const topicsList = firstModuleHeader.nextElementSibling; // The topics list is the next sibling
+
+                    if (topicsList.classList.contains('hidden')) { // If it's hidden, click to expand
+                        firstModuleHeader.click(); // Simulate click to expand
+                    }
+                }
+
+                // Activate the topic link
+                document.querySelectorAll('.topic-link').forEach(btn => btn.classList.remove('active', 'bg-blue-500', 'text-white'));
+                firstTopicLink.classList.add('active', 'bg-blue-500', 'text-white', 'hover:bg-blue-600');
+
+                // Load the content for the first topic
+                loadTopicContent('saludos-despedidas');
+            } else {
+                console.error("El enlace del primer tema 'Saludos y Despedidas' no se encontró.");
+                showMessageModal('Error', 'No se pudo cargar el primer tema. Por favor, recarga la página.');
+            }
+        });
+        introButtons.introLogin.addEventListener('click', () => showSection('login'));
+        introButtons.introRegister.addEventListener('click', () => showSection('registration'));
+
+        // Registration form
+        registrationForm.addEventListener('submit', handleRegistration);
+        regLoginBtn.addEventListener('click', () => showSection('login'));
+
+        // Login form
+        loginForm.addEventListener('submit', handleLogin);
+        togglePasswordVisibilityBtn.addEventListener('click', () => {
+            const type = loginPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            loginPasswordInput.setAttribute('type', type);
+            togglePasswordVisibilityBtn.querySelector('i').classList.toggle('fa-eye');
+            togglePasswordVisibilityBtn.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+        loginRegisterBtn.addEventListener('click', () => showSection('registration'));
+
+        // Change password button in dashboard
+        changePasswordBtn.addEventListener('click', () => {
+            if (loggedInUser) {
+                passwordChangeModal.style.display = 'flex';
+            } else {
+                showMessageModal('Error', 'Debes iniciar sesión para cambiar tu contraseña.');
+            }
+        });
+
+        // Close modals
+        closeButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const modalToClose = e.target.dataset.modal ? document.getElementById(e.target.dataset.modal) : messageModal;
+                modalToClose.style.display = 'none';
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === messageModal) {
+                messageModal.style.display = 'none';
+            }
+            if (event.target === passwordChangeModal) {
+                passwordChangeModal.style.display = 'none';
+            }
+        });
+
+        // Password change form
+        passwordChangeForm.addEventListener('submit', handleChangePassword);
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('intro'); // Show the intro section on page load
+            renderModuleNavigation(); // Render module navigation (with the first one unlocked)
+            // Prompt user to enter Apps Script URL if not configured
+            if (GOOGLE_APPS_SCRIPT_URL === 'TU_URL_DE_APPS_SCRIPT_AQUI') {
+                setTimeout(() => {
+                    showMessageModal('Configuración Requerida', 'Para que la aplicación funcione, necesitas desplegar el Google Apps Script y pegar la URL de la aplicación web en el código JavaScript (variable GOOGLE_APPS_SCRIPT_URL).', () => {
+                        // You can add a prompt here for the user to paste it directly
+                        // const url = prompt("Por favor, introduce la URL de tu Google Apps Script:");
+                        // updateAppsScriptUrl(url);
+                    });
+                }, 1000);
+            }
+        });
+
+    </script>
+</body>
+</html>
