@@ -3,542 +3,1195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aprendiendo Inglés con Douglas</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Step by Step Academy - Aula Virtual</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
-        /* Estilos personalizados para el scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 1rem;
+            box-sizing: border-box;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
+        .container {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12), 0 14px 24px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem;
+            max-width: 800px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            transition: all 0.3s ease-in-out;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 10px;
+        @media (min-width: 768px) {
+            .container {
+                padding: 3rem;
+            }
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
         }
-
-        /* Ocultar el scrollbar en elementos específicos si es necesario, pero permitir el desplazamiento */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
+        .option-button {
+            display: block;
+            width: 100%;
+            padding: 1.1rem 1.5rem;
+            margin-bottom: 0.75rem;
+            text-align: left;
+            border: 2px solid #e0e7ee;
+            border-radius: 0.75rem;
+            background-color: #ffffff;
+            color: #3f4a5a;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
         }
-        .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+        .option-button:hover {
+            background-color: #e6f2ff;
+            border-color: #6366f1;
+            color: #4338ca;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(99, 102, 241, 0.2);
         }
-        .prose a {
-            color: #2b6cb0;
-            text-decoration: underline;
+        .option-button.selected {
+            background-color: #c7d2fe;
+            border-color: #4338ca;
+            color: #312e81;
+            box-shadow: 0 2px 8px rgba(67, 56, 202, 0.2);
         }
-        .prose a:hover {
-            color: #1e4b85;
+        .multiple-select-option {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 1.1rem 1.5rem;
+            margin-bottom: 0.75rem;
+            border: 2px solid #e0e7ee;
+            border-radius: 0.75rem;
+            background-color: #ffffff;
+            color: #3f4a5a;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        .multiple-select-option:hover {
+            background-color: #e6f2ff;
+            border-color: #6366f1;
+            color: #4338ca;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(99, 102, 241, 0.2);
+        }
+        .multiple-select-option.selected {
+            background-color: #c7d2fe;
+            border-color: #4338ca;
+            color: #312e81;
+            box-shadow: 0 2px 8px rgba(67, 56, 202, 0.2);
+        }
+        .multiple-select-option input[type="checkbox"] {
+            margin-right: 1rem;
+            transform: scale(1.5);
+            accent-color: #6366f1;
+        }
+        .main-button, .send-button {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        .main-button {
+            background-image: linear-gradient(to right, #6366f1, #4338ca);
+            color: white;
+        }
+        .main-button:hover {
+            background-image: linear-gradient(to right, #4338ca, #312e81);
+            transform: translateY(-4px);
+        }
+        .main-button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .main-button:disabled, .send-button:disabled {
+            background-image: linear-gradient(to right, #cbd5e1, #94a3b8);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .send-button {
+             background-image: linear-gradient(to right, #10b981, #059669);
+             color: white;
+        }
+        .send-button:hover {
+            background-image: linear-gradient(to right, #059669, #047857);
+            transform: translateY(-4px);
+        }
+        .send-button:active {
+            transform: translateY(0);
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .progress-bar-container {
+            width: 100%;
+            background-color: #e2e8f0;
+            border-radius: 9999px;
+            height: 12px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #6366f1;
+            width: 0%;
+            border-radius: 9999px;
+            transition: width 0.3s ease-out;
+        }
+        .direct-answer-input {
+            width: 100%;
+            padding: 1.1rem 1.5rem;
+            border: 2px solid #e0e7ee;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            color: #3f4a5a;
+        }
+        .direct-answer-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3);
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #6366f1;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #final-thanks-message {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #4338ca;
+            margin-top: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            line-height: 1.3;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background-color: #ffffff;
+            padding: 3rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+        }
+        #final-thanks-message.show {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+        .timer-display {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3f4a5a;
+            background-color: #e6f2ff;
+            padding: 0.5rem 1rem;
+            border-radius: 0.75rem;
+            margin-left: auto;
+            min-width: 120px;
+            text-align: center;
+        }
+        .timer-display.low-time {
+            color: #dc2626;
+            background-color: #fee2e2;
+        }
+        .multi-part-question-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .multi-part-question-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .multi-part-question-item label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+        .module-selection-card {
+            background-color: #f0f4f8;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .module-selection-card select {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border-radius: 0.75rem;
+            border: 2px solid #e0e7ee;
+            background-color: #ffffff;
+            color: #3f4a5a;
+        }
+        .module-selection-card select:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3);
+        }
+        .attempts-counter {
+            font-weight: 600;
+            margin-top: 1rem;
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans antialiased text-gray-800">
+<body>
+    <div id="quiz-app" class="container">
+        <div id="main-header" class="text-center mb-6">
+            <h1 class="text-4xl font-extrabold text-blue-800 mb-2">Step by Step Academy</h1>
+            <p class="text-lg text-gray-600 italic">"Tu camino al éxito en inglés, paso a paso."</p>
+        </div>
 
-    <nav id="mainNav" class="bg-gradient-to-r from-blue-600 to-blue-800 p-4 shadow-lg">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-white text-3xl font-bold tracking-wide">Aprendiendo Inglés con Douglas</a>
-            <div id="navButtons" class="space-x-4">
-                <button id="navLoginBtn" class="bg-white text-blue-800 py-2 px-6 rounded-full font-semibold hover:bg-gray-200 transition duration-300 shadow-md">Iniciar Sesión</button>
-                <button id="navRegisterBtn" class="bg-green-500 text-white py-2 px-6 rounded-full font-semibold hover:bg-green-600 transition duration-300 shadow-md">Inscribirse</button>
+        <div id="login-screen" class="text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">¡Hola de nuevo!</h2>
+            <h3 class="text-xl font-bold text-gray-600 mb-4">Ingresa tus datos para continuar</h3>
+            
+            <div class="mb-4 space-y-3">
+                <input type="text" id="user-name" placeholder="Tu Nombre" class="direct-answer-input" required>
+                <input type="text" id="user-surname" placeholder="Tu Apellido" class="direct-answer-input" required>
+                <input type="email" id="user-email" placeholder="Tu Correo Electrónico" class="direct-answer-input" required>
+                <input type="text" id="user-id-card" placeholder="Tu Cédula de Identidad" class="direct-answer-input" required>
+            </div>
+            
+            <div class="flex justify-center mt-6">
+                <button id="start-app-button" class="main-button" disabled>Iniciar</button>
             </div>
         </div>
-    </nav>
 
-    <div id="mainContent">
-        <section id="introSection" class="relative bg-gradient-to-br from-blue-500 to-indigo-600 text-white py-20 px-4 text-center shadow-inner">
-            <div class="absolute inset-0 bg-black opacity-30"></div>
-            <div class="relative z-10 container mx-auto">
-                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-down">¡Desbloquea tu Potencial en Inglés!</h1>
-                <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90 animate-fade-in-up">Sumérgete en un viaje fascinante para dominar el inglés de forma práctica y divertida. ¡Tu aventura comienza aquí!</p>
-                <button id="startLearningBtn" class="bg-yellow-400 text-blue-900 py-4 px-10 rounded-full text-xl font-bold uppercase hover:bg-yellow-500 transition duration-300 transform hover:scale-105 shadow-lg">Comienza a Aprender Hoy</button>
+        <div id="main-screen" class="hidden text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">¡Bienvenido al Aula Virtual!</h2>
+            <p class="text-lg text-gray-600 italic mb-6">Selecciona un módulo para comenzar tu práctica</p>
+            
+            <div class="module-selection-card">
+                <label for="module-select" class="text-left text-xl font-semibold text-gray-800">1. Selecciona un Módulo:</label>
+                <select id="module-select" class="w-full">
+                    <option value="" disabled selected>-- Elige un tema --</option>
+                    <option value="module1">Módulo 1: Inglés Básico</option>
+                </select>
             </div>
-        </section>
-    </div>
-
-    <div id="registerModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-lg shadow-xl p-8 w-11/12 md:w-2/3 lg:w-1/2 relative transform scale-95 transition-transform duration-300 ease-out">
-            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold" id="closeRegisterModal">&times;</button>
-            <h2 class="text-3xl font-bold text-center mb-6 text-blue-700">Formulario de Inscripción</h2>
-            <form id="registrationForm" class="space-y-5">
-                <div>
-                    <label for="regNombre" class="block text-gray-700 text-lg font-medium mb-2">Nombre:</label>
-                    <input type="text" id="regNombre" name="nombre" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-                </div>
-                <div>
-                    <label for="regApellido" class="block text-gray-700 text-lg font-medium mb-2">Apellido:</label>
-                    <input type="text" id="regApellido" name="apellido" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-                </div>
-                <div>
-                    <label for="regCedula" class="block text-gray-700 text-lg font-medium mb-2">Cédula de Identidad:</label>
-                    <input type="text" id="regCedula" name="cedula" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-                </div>
-                <div>
-                    <label for="regEdad" class="block text-gray-700 text-lg font-medium mb-2">Edad:</label>
-                    <input type="number" id="regEdad" name="edad" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-                </div>
-                <div>
-                    <label for="regCorreo" class="block text-gray-700 text-lg font-medium mb-2">Correo Electrónico:</label>
-                    <input type="email" id="regCorreo" name="correo" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-                </div>
-                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-4 rounded-lg hover:bg-blue-700 transition duration-300 text-xl shadow-md">Inscribirme</button>
-                <p id="registrationMessage" class="text-center mt-4 text-lg font-medium"></p>
-            </form>
-        </div>
-    </div>
-
-    <div id="loginModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-lg shadow-xl p-8 w-11/12 md:w-1/3 relative transform scale-95 transition-transform duration-300 ease-out">
-            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold" id="closeLoginModal">&times;</button>
-            <h2 class="text-3xl font-bold text-center mb-6 text-blue-700">Iniciar Sesión</h2>
-            <form id="loginForm" class="space-y-5">
-                <div>
-                    <label for="loginCorreo" class="block text-gray-700 text-lg font-medium mb-2">Correo Electrónico:</label>
-                    <input type="email" id="loginCorreo" name="correo" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-                </div>
-                <div>
-                    <label for="loginPassword" class="block text-gray-700 text-lg font-medium mb-2">Contraseña:</label>
-                    <div class="relative">
-                        <input type="password" id="loginPassword" name="password" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-                        <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-600">
-                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-4 rounded-lg hover:bg-blue-700 transition duration-300 text-xl shadow-md">Acceder al Aula</button>
-                <p id="loginMessage" class="text-center mt-4 text-lg font-medium"></p>
-                 <button type="button" id="forgotPasswordBtn" class="w-full text-center text-blue-500 hover:underline mt-2">¿Olvidaste tu contraseña?</button>
-            </form>
-        </div>
-    </div>
-    
-    <div id="aulaVirtual" class="hidden min-h-screen">
-        <header class="bg-gradient-to-r from-blue-700 to-blue-900 text-white p-4 shadow-xl">
-            <div class="container mx-auto flex justify-between items-center">
-                <h1 class="text-3xl font-bold">¡Bienvenido al Aula, <span id="studentNameDisplay"></span>!</h1>
-                <button id="logoutBtn" class="bg-red-500 text-white py-2 px-6 rounded-full font-semibold hover:bg-red-600 transition duration-300 shadow-md">Cerrar Sesión</button>
+            
+            <div id="module-info" class="hidden text-left mt-4 p-4 bg-gray-100 rounded-lg">
+                <h3 class="font-bold text-lg text-gray-800 mb-2">Descripción:</h3>
+                <p id="module-description" class="text-gray-700"></p>
+                <p class="font-bold text-blue-700 mt-4"><i class="fas fa-hourglass-half text-blue-600 mr-2"></i> Duración estimada: <span id="module-duration"></span></p>
+                <p id="attempts-display" class="font-bold text-blue-700 attempts-counter mt-4"><i class="fas fa-redo-alt text-blue-600 mr-2"></i> Intentos restantes: <span id="remaining-attempts"></span></p>
             </div>
-        </header>
 
-        <main class="container mx-auto mt-8 p-4 md:p-8 flex flex-col md:flex-row gap-8">
-            <aside class="w-full md:w-1/4 bg-white p-6 rounded-lg shadow-lg max-h-[80vh] overflow-y-auto no-scrollbar">
-                <h3 class="text-2xl font-bold mb-6 text-blue-700">Contenido del Curso</h3>
-                <nav id="moduleMenu" class="space-y-4">
-                    </nav>
-            </aside>
+            <div class="flex justify-center mt-6">
+                <button id="start-module-button" class="main-button" disabled>Comenzar</button>
+            </div>
+        </div>
 
-            <section id="contentArea" class="w-full md:w-3/4 bg-white p-8 rounded-lg shadow-lg">
-                <h2 id="contentTitle" class="text-4xl font-extrabold mb-6 text-blue-800">Selecciona un tema para comenzar...</h2>
-                <div id="lessonContent" class="prose max-w-none text-lg leading-relaxed">
-                    <p class="text-gray-600">Navega por el menú de la izquierda para explorar los diferentes módulos y temas del curso de inglés. ¡Mucho éxito en tu aprendizaje!</p>
-                </div>
+        <div id="instructions-screen" class="hidden text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Instrucciones de la Prueba</h2>
+            <div class="text-left text-gray-700 text-lg space-y-4 mb-8">
+                <p class="font-bold text-blue-700"><i class="fas fa-exclamation-triangle text-red-600 mr-2"></i> **Important:** You have **only one opportunity** to complete this test. / **Importante:** Solo tienes **una única oportunidad** para completar esta prueba.</p>
+                <p class="font-bold text-blue-700"><i class="fas fa-star text-blue-600 mr-2"></i> Each correct answer is worth 0.4 points. Maximum score: 20 points. / Cada respuesta correcta vale 0.4 puntos. Puntuación máxima: 20 puntos.</p>
+                <p><i class="fas fa-book-reader text-blue-600 mr-2"></i> Read each item carefully before answering. / Lee cada ítem cuidadosamente antes de responder.</p>
+                <p><i class="fas fa-check-square text-blue-600 mr-2"></i> For **multiple-choice** items, you can choose one or more options. Each correct option adds points. / Para los ítems de **selección múltiple**, puedes elegir una o varias opciones. Cada opción correcta suma puntos.</p>
+                <p><i class="fas fa-keyboard text-blue-600 mr-2"></i> For **direct answer** items, write your answer in the provided field. Be careful with spelling and grammar. / Para los ítems de **respuesta directa**, escribe tu respuesta en el campo provisto. Asegúrate de la ortografía y gramática.</p>
+                <p><i class="fas fa-arrows-alt-h text-blue-600 mr-2"></i> You can navigate between items using the 'Back' and 'Next' buttons. / Puedes navegar entre los ítems usando los botones 'Atrás' y 'Siguiente'.</p>
+                <p class="font-bold text-blue-700"><i class="fas fa-check-circle text-green-600 mr-2"></i> **Review your answers carefully** before clicking "Finish Test". / **Revisa cuidadosamente tus respuestas** antes de hacer clic en "Finalizar Prueba".</p>
+                <p class="font-bold text-blue-700"><i class="fas fa-hourglass-half text-blue-600 mr-2"></i> The time limit is 120 minutes. Good luck! / El tiempo límite es de 120 minutos. ¡Mucha suerte!</p>
+            </div>
+            <button id="start-first-question-button" class="main-button">Entendido, ¡Comenzar!</button>
+        </div>
 
-                <div id="evaluationSection" class="mt-10 hidden">
-                    <h3 class="text-3xl font-bold mb-6 text-green-700">Evaluación del Tema</h3>
-                    <form id="quizForm" class="space-y-6">
-                        </form>
-                    <button id="submitQuizBtn" class="mt-8 bg-green-600 text-white font-bold py-4 px-8 rounded-lg hover:bg-green-700 transition duration-300 text-xl shadow-md">Enviar Evaluación</button>
-                    <div id="quizResult" class="mt-6 text-center text-2xl font-bold hidden"></div>
-                    <button id="repeatQuizBtn" class="mt-4 bg-yellow-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-yellow-600 transition duration-300 hidden">Repetir Evaluación</button>
-                </div>
+        <div id="quiz-screen" class="hidden">
+            <div class="flex justify-between items-center mb-4">
+                <span id="question-counter" class="text-gray-600 font-medium text-lg"></span>
+                <div id="timer-display" class="timer-display">00:00</div>
+            </div>
+            <div class="progress-bar-container mb-6"><div id="progress-bar" class="progress-bar"></div></div>
+            <h2 id="question-text" class="text-2xl font-semibold text-gray-800 mb-6"></h2>
+            <div id="options-container" class="flex flex-col gap-3"></div>
+            <div class="flex justify-between gap-4 mt-8">
+                <button id="prev-button" class="main-button w-1/2" disabled>Atrás</button>
+                <button id="next-button" class="main-button w-1/2" disabled>Siguiente</button>
+            </div>
+        </div>
 
-                 <div id="changePasswordSection" class="mt-10 hidden">
-                    <h3 class="text-3xl font-bold mb-6 text-purple-700">Cambiar Contraseña</h3>
-                    <form id="changePasswordForm" class="space-y-5">
-                        <div>
-                            <label for="currentPassword" class="block text-gray-700 text-lg font-medium mb-2">Contraseña Actual:</label>
-                            <input type="password" id="currentPassword" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-200" required>
-                        </div>
-                        <div>
-                            <label for="newPassword" class="block text-gray-700 text-lg font-medium mb-2">Nueva Contraseña:</label>
-                            <input type="password" id="newPassword" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-200" required>
-                        </div>
-                        <div>
-                            <label for="confirmNewPassword" class="block text-gray-700 text-lg font-medium mb-2">Confirmar Nueva Contraseña:</label>
-                            <input type="password" id="confirmNewPassword" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-200" required>
-                        </div>
-                        <button type="submit" class="w-full bg-purple-600 text-white font-bold py-4 rounded-lg hover:bg-purple-700 transition duration-300 text-xl shadow-md">Cambiar Contraseña</button>
-                        <p id="passwordChangeMessage" class="text-center mt-4 text-lg font-medium"></p>
-                    </form>
-                </div>
-
-            </section>
-        </main>
+        <div id="results-screen" class="hidden text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">¡Prueba Finalizada!</h2>
+            
+            <button id="send-delia-email-button" class="send-button mt-8 w-full">
+                <i class="fas fa-save"></i> Guardar Resultados
+            </button>
+            <div id="email-status-message" class="text-sm mt-2 text-gray-600 hidden"></div>
+        </div>
     </div>
 
-    <footer class="bg-gray-800 text-white py-6 mt-12 shadow-inner">
-        <div class="container mx-auto text-center text-sm">
-            <p>&copy; <span id="currentYear"></span> Aprendiendo Inglés con Douglas. Todos los derechos reservados.</p>
-            <p>Desarrollado con ❤️ y mucho código.</p>
-        </div>
-    </footer>
+    <div id="final-thanks-message" class="hidden">
+        ¡Gracias por completar la prueba!
+    </div>
 
     <script>
+        // EmailJS initialization
+        (function() {
+            emailjs.init("7FE4lqcCZ69cThSp_"); 
+        })();
+
         // --- URLs DE GOOGLE APPS SCRIPT ---
-        const loginAppScriptUrl = 'https://script.google.com/macros/s/AKfycbwk3HY1ZDUCkhxXq9d8cEsdCchkpNi8vdF_bgm7j0Fo-HCZlTnbC5wY6vgejpV527lOmQ/exec';
-        const registrationAppScriptUrl = 'https://script.google.com/macros/s/AKfycby_A9KJp3c0WIlWz_vyh62ZPsDKo7yDnMHwieiL4BlHxJSXRHYPRhUkcPuz9L21SMMJlg/exec';
-        const resultsAppScriptUrl = 'https://script.google.com/macros/s/AKfycbzPCkDflF56iN7uQk4CVX-9ZuueLsZWvm0pT3iYmtMFwanDwhPgdqdcsFwE7JgszXni/exec';
+        const loginAppScriptUrl = 'https://script.google.com/macros/s/AKfycbzL5E-f20389v6C09o2l22X25-rXfS-kH6o0s/exec'; // URL del script de login
+        const attemptsCheckerUrl = 'https://script.google.com/macros/s/AKfycbzL5E-f20389v6C09o2l22X25-rXfS-kH6o0s/exec'; // ¡Es la misma URL del script de login!
+        const resultsAppScriptUrl = 'https://script.google.com/macros/s/AKfycbzL5E-f20389v6C09o2l22X25-rXfS-kH6o0s/exec'; // ¡Es la misma URL del script de login!
 
-        // --- MÓDULOS DEL CURSO ---
-        const modules = [
-            {
-                id: 'ingles-basico-greetings',
-                title: 'Inglés Básico - Saludos y Despedidas',
-                isFree: true,
-                content: `
-                    <p>En este módulo, aprenderás las expresiones más comunes para saludar y despedirte en inglés, tanto en contextos formales como informales.</p>
-                    <h3 class="text-2xl font-bold mt-6 mb-2">Contenido del Tema</h3>
-                    <p><strong>Saludos (Greetings):</strong></p>
-                    <ul class="list-disc list-inside ml-4 space-y-1">
-                        <li>**Formal:** Good morning, Good afternoon, Good evening, How do you do?</li>
-                        <li>**Informal:** Hi, Hello, Hey, What's up?, How's it going?</li>
-                    </ul>
-                    <p class="mt-4"><strong>Despedidas (Farewells):</strong></p>
-                    <ul class="list-disc list-inside ml-4 space-y-1">
-                        <li>**Formal:** Goodbye, Have a nice day, See you later.</li>
-                        <li>**Informal:** Bye, See ya, Take care, Later.</li>
-                    </ul>
-                    <div class="resource-section mt-8 border-t pt-6 border-gray-200">
-                        <h3 class="text-2xl font-bold mt-6 mb-2">Recursos Pedagógicos</h3>
-                        <p><i class="fas fa-file-alt text-blue-500 mr-2"></i> Documento de apoyo: <a href="#" class="text-blue-600 hover:underline">Descargar guía de Saludos y Despedidas</a></p>
-                        <p><i class="fas fa-video text-red-500 mr-2"></i> Video explicativo: <a href="#" class="text-blue-600 hover:underline">Ver video en YouTube</a></p>
-                        <p><i class="fas fa-volume-up text-green-500 mr-2"></i> Audio de pronunciación: <a href="#" class="text-blue-600 hover:underline">Escuchar pronunciación</a></p>
-                    </div>
-                `,
-                quiz: {
-                    questions: [
-                        { question: "Which of the following is a formal greeting?", type: "single-choice", options: ["Hi", "What's up?", "Good evening"], answer: "Good evening" },
-                        { question: "Translate '¡Hola, qué tal!' to an informal English greeting.", type: "direct-answer", answer: ["Hi, what's up?", "Hello, what's up?", "What's up?"] },
-                        { question: "Choose all informal greetings from the list:", type: "multiple-select", options: [{ text: "Morning", value: "Morning", isCorrect: true }, { text: "Good morning", value: "Good morning", isCorrect: false }, { text: "Hey", value: "Hey", isCorrect: true }, { text: "Goodbye", value: "Goodbye", isCorrect: false }] },
-                        { question: "Is 'See you later' a formal farewell?", type: "true-false", answer: "false" },
-                        { question: "Translate 'Hasta luego' into English.", type: "direct-answer", answer: ["See you later", "See you soon"] },
-                        { question: "Complete the phrase: 'Good _____, have a nice day!'", type: "direct-answer", answer: ["bye", "goodbye"] },
-                        { question: "Select all formal greetings:", type: "multiple-select", options: [{ text: "Good morning", value: "Good morning", isCorrect: true }, { text: "Hi", value: "Hi", isCorrect: false }, { text: "Good evening", value: "Good evening", isCorrect: true }, { text: "Hey there", value: "Hey there", isCorrect: false }] },
-                        { question: "The greeting 'How do you do?' is used in informal contexts.", type: "true-false", answer: "false" },
-                        { question: "Complete the dialogue: A: 'Hello!' B: '______!'", type: "direct-answer", answer: ["Hello", "Hi"] },
-                        { question: "Which option is a common way to say goodbye?", type: "single-choice", options: ["How are you?", "See you soon", "What's new?"], answer: "See you soon" }
-                    ]
-                }
+        // --- QUIZ DATA ---
+        const modules = {
+            'module1': {
+                name: 'Módulo 1: Inglés Básico',
+                attemptsColumn: 'Módulo 1 - Intentos',
+                description: 'En este módulo aprenderás las bases del inglés, incluyendo saludos, números, días de la semana y el verbo "To be". / In this module you will learn the basics of English, including greetings, numbers, days of the week, and the verb "To be".',
+                duration: '120 minutos',
+                questions: [
+                    {
+                        question: "Presentación y saludos (formal/informal)<br>Which of the following are informal greetings? (Select all that apply) / ¿Cuáles de las siguientes son saludos informales? (Selecciona todas las que apliquen):",
+                        type: "multiple-select",
+                        options: [
+                            { text: "a) Hi", value: "a", isCorrect: true },
+                            { text: "b) Good evening", value: "b", isCorrect: false },
+                            { text: "c) Morning", value: "c", isCorrect: true },
+                            { text: "d) Hello", value: "d", isCorrect: false },
+                            { text: "e) How’s everything?", value: "e", isCorrect: true },
+                            { text: "f) Good morning", value: "f", isCorrect: false },
+                            { text: "g) How’s it going?", value: "g", isCorrect: true }
+                        ],
+                        topic: "Presentación y saludos (formal/informal)",
+                        scoreParts: 4
+                    },
+                    {
+                        question: "Despedidas<br>Select the appropriate ways to say goodbye. / Selecciona las formas en que podemos despedirnos (Escoge todas las que apliquen):",
+                        type: "multiple-select",
+                        options: [
+                            { text: "a) Bye", value: "a", isCorrect: true },
+                            { text: "b) See you later", value: "b", isCorrect: true },
+                            { text: "c) Good night", value: "c", isCorrect: true },
+                            { text: "d) Hello", value: "d", isCorrect: false },
+                            { text: "e) What’s up?", value: "e", isCorrect: false },
+                            { text: "f) How do you do?", value: "f", isCorrect: false },
+                            { text: "g) Good morning", value: "g", isCorrect: false }
+                        ],
+                        topic: "Despedidas",
+                        scoreParts: 4
+                    },
+                    {
+                        question: "Días de la semana<br>Select the correct order. / Selecciona el orden correcto:",
+                        type: "single-choice",
+                        options: [
+                            "a) Wednesday, Monday, Tuesday, Thursday, Friday, Saturday, Sunday",
+                            "b) Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday",
+                            "c) Monday, Thursday, Wednesday, Tuesday, Friday, Saturday, Sunday",
+                            "d) Monday, Tuesday, Wednesday, Thursday, Friday, Sunday, Saturday"
+                        ],
+                        answer: "b) Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday",
+                        topic: "Días de la semana",
+                        scoreParts: 1
+                    },
+                    {
+                        question: "Meses del año<br>Which of these are months of the year? (Select all that apply) / ¿Cuáles de estos son meses del año? (Selecciona todas las que apliquen):",
+                        type: "multiple-select",
+                        options: [
+                            { text: "a) January", value: "a", isCorrect: true },
+                            { text: "b) Morning", value: "b", isCorrect: false },
+                            { text: "c) Saturday", value: "c", isCorrect: false },
+                            { text: "d) April", value: "d", isCorrect: true },
+                            { text: "e) Friday", value: "e", isCorrect: false },
+                            { text: "f) December", value: "f", isCorrect: true },
+                            { text: "g) August", value: "g", isCorrect: true }
+                        ],
+                        topic: "Meses del año",
+                        scoreParts: 4
+                    },
+                    {
+                        question: "Números cardinales y ordinales<br>Choose the correct ordinal numbers. / Escoge los números ordinales:",
+                        type: "multiple-select",
+                        options: [
+                            { text: "a) First", value: "a", isCorrect: true },
+                            { text: "b) Three", value: "b", isCorrect: false },
+                            { text: "c) Second", value: "c", isCorrect: true },
+                            { text: "d) Twelve", "value": "d", isCorrect: false },
+                            { text: "e) Third", value: "e", isCorrect: true },
+                            { text: "f) Fifth", value: "f", isCorrect: true },
+                            { text: "g) Eighteen", value: "g", isCorrect: false }
+                        ],
+                        topic: "Números cardinales y ordinales",
+                        scoreParts: 4
+                    },
+                    {
+                        question: "Verbo “To be” (presente)<br>Choose the correct positive sentence with the verb “to be”. / Selecciona las oraciones positivas que estén escritas correctamente:",
+                        type: "multiple-select",
+                        options: [
+                            { text: "a) I is happy", value: "a", isCorrect: false },
+                            { text: "b) She are tired", value: "b", isCorrect: false },
+                            { text: "c) They are friends", value: "c", isCorrect: true },
+                            { text: "d) You am busy", value: "d", isCorrect: false },
+                            { text: "e) We are teachers", value: "e", isCorrect: true },
+                            { text: "f) He are my brother", value: "f", isCorrect: false },
+                            { text: "g) It is cold", value: "g", isCorrect: true }
+                        ],
+                        topic: "Verbo “To be” (presente)",
+                        scoreParts: 3
+                    },
+                    {
+                        question: "Oraciones negativas con “To be”<br>Complete the sentences with the correct negative form. / Completa las oraciones negativas con la forma correcta:",
+                        type: "multi-direct-answer",
+                        parts: [
+                            { prompt: "1. I _______ a student.", answer: ["am not", "'m not"] }, 
+                            { prompt: "2. They _____ at home.", answer: ["are not", "aren't"] }, 
+                            { prompt: "3. He ______ a doctor.", answer: ["is not", "isn't"] },   
+                            { prompt: "4. She _____ happy.", answer: ["is not", "isn't"] },
+                            { prompt: "5. We ____ ready.", answer: ["are not", "aren't"] },
+                            { prompt: "6. It ______ sunny.", answer: ["is not", "isn't"] },
+                            { prompt: "7. You _______ tired.", answer: ["are not", "aren't"] } 
+                        ],
+                        topic: "Oraciones negativas con “To be”",
+                        scoreParts: 7
+                    },
+                    {
+                        question: "Interrogativas con “To be”<br>Transform the following positive sentences into interrogative sentences. / Transforma las siguientes oraciones positivas a oraciones interrogativas:",
+                        type: "multi-direct-answer",
+                        parts: [
+                            { prompt: "a) You are okay", answer: ["Are you okay?"] }, 
+                            { prompt: "b) They are hungry", answer: ["Are they hungry?"] },
+                            { prompt: "c) He is a teacher", answer: ["Is he a teacher?"] },
+                            { prompt: "d) We are ready", answer: ["Are we ready?"] },
+                            { prompt: "e) She is at school", answer: ["Is she at school?"] },
+                            { prompt: "f) They are friends", answer: ["Are they friends?"] }
+                        ],
+                        topic: "Interrogativas con “To be”",
+                        scoreParts: 6
+                    },
+                    {
+                        question: "A vs. An<br>Write the correct article for each noun. / Escribe el artículo correcto para cada sustantivo (Opción correcta: a/an según el caso):",
+                        type: "multi-direct-answer",
+                        parts: [
+                            { prompt: "a) __ apple", answer: ["an"] },
+                            { prompt: "b) __ orange", answer: ["an"] },
+                            { prompt: "c) __ book", answer: ["a"] },
+                            { prompt: "d) __ umbrella", answer: ["an"] },
+                            { prompt: "e) __ elephant", answer: ["an"] }, 
+                            { prompt: "f) __ pen", answer: ["a"] },
+                            { prompt: "g) __ hour", answer: ["an"] }
+                        ],
+                        topic: "A vs. An",
+                        scoreParts: 7
+                    },
+                    {
+                        question: "Nouns y plural nouns<br>Choose the correct plural form. / Escoge el sustantivo plural correcto:",
+                        type: "multiple-select",
+                        options: [
+                            { text: "a) Baby → Babys", value: "a", isCorrect: false },
+                            { text: "b) Child → Childs", value: "b", isCorrect: false },
+                            { text: "c) Man → Men", value: "c", isCorrect: true },
+                            { text: "d) Woman → Women", value: "d", isCorrect: true },
+                            { text: "e) Mouse → Mouses", value: "e", isCorrect: false },
+                            { text: "f) Tooth → Teeth", value: "f", isCorrect: true },
+                            { text: "g) Foot → Feet", value: "g", isCorrect: true }
+                        ],
+                        topic: "Nouns y plural nouns",
+                        scoreParts: 4
+                    },
+                    {
+                        question: "Partes del cuerpo<br>Translate the following body parts into Spanish. / Traduce las siguientes partes del cuerpo al español:",
+                        type: "multi-direct-answer",
+                        parts: [
+                            { prompt: "1. Hand", answer: ["mano"] },
+                            { prompt: "2. Foot", answer: ["pie"] },
+                            { prompt: "3. Head", answer: ["cabeza"] }
+                        ],
+                        topic: "Partes del cuerpo",
+                        scoreParts: 3
+                    },
+                    {
+                        question: "Familia (integrantes)<br>Translate the following family members into Spanish. / Traduce los siguientes miembros de la familia al español:",
+                        type: "multi-direct-answer",
+                        parts: [
+                            { prompt: "1. Mother", answer: ["madre"] },
+                            { prompt: "2. Father", answer: ["padre"] },
+                            { prompt: "3. Sister", answer: ["hermana"] }
+                        ],
+                        topic: "Familia (integrantes)",
+                        scoreParts: 3
+                    }
+                ]
             }
-        ];
+        };
 
-        // --- CACHE DE ELEMENTOS DOM ---
-        const introSection = document.getElementById('introSection');
-        const aulaVirtual = document.getElementById('aulaVirtual');
-        const loginModal = document.getElementById('loginModal');
-        const registerModal = document.getElementById('registerModal');
-        const loginForm = document.getElementById('loginForm');
-        const registrationForm = document.getElementById('registrationForm');
-        const navLoginBtn = document.getElementById('navLoginBtn');
-        const navRegisterBtn = document.getElementById('navRegisterBtn');
-        const startLearningBtn = document.getElementById('startLearningBtn');
-        const closeLoginModalBtn = document.getElementById('closeLoginModal');
-        const closeRegisterModalBtn = document.getElementById('closeRegisterModal');
-        const moduleMenu = document.getElementById('moduleMenu');
-        const contentTitle = document.getElementById('contentTitle');
-        const lessonContent = document.getElementById('lessonContent');
-        const evaluationSection = document.getElementById('evaluationSection');
-        const quizForm = document.getElementById('quizForm');
-        const submitQuizBtn = document.getElementById('submitQuizBtn');
-        const quizResult = document.getElementById('quizResult');
-        const repeatQuizBtn = document.getElementById('repeatQuizBtn');
-        const studentNameDisplay = document.getElementById('studentNameDisplay');
-        const logoutBtn = document.getElementById('logoutBtn');
-
-        let currentStudent = null;
-        let currentModule = null;
-        let currentQuizQuestions = [];
+        // --- GLOBAL QUIZ VARIABLES ---
+        let selectedModuleId = null;
+        let quizQuestions = [];
+        let shuffledQuestions = [];
         let currentQuestionIndex = 0;
-        let quizAnswers = [];
-        const QUIZ_PASS_SCORE = 8;
-        const MAX_QUIZ_SCORE = 10;
+        let rawScore = 0; 
+        let userAnswers = [];
+        let incorrectQuestionsData = [];
+        let correctQuestionsData = [];
+        let userName = '', userSurname = '', userEmail = '', userIdCard = ''; 
+        let timerInterval; 
+        const QUIZ_DURATION_MINUTES = 25;
+        let remainingTime; 
+        let quizSubmittedByTimeOut = false; 
+        let quizStartTime;
+        let isQuizCompleted = false;
 
-        // --- LÓGICA DE NAVEGACIÓN Y PANTALLAS ---
+        // --- DOM ELEMENTS ---
+        let quizAppContainer;
+        let mainHeader;
+        let loginScreen;
+        let mainScreen;
+        let instructionsScreen; 
+        let quizScreen;
+        let resultsScreen;
+        let startAppButton;
+        let startModuleButton;
+        let startFirstQuestionButton; 
+        let userNameInput;
+        let userSurnameInput;
+        let userEmailInput;
+        let userIdCardInput;
+        let moduleSelect;
+        let moduleInfo;
+        let moduleDescription;
+        let moduleDuration;
+        let attemptsDisplay;
+        let remainingAttemptsSpan;
+        let questionCounter;
+        let progressBar;
+        let questionText;
+        let optionsContainer;
+        let nextButton;
+        let prevButton; 
+        let sendEmailButton; 
+        let statusMessage; 
+        let finalThanksMessage;
+        let timerDisplay; 
+        let currentQuizData;
+
+        // --- CONSTANTS ---
+        const MAX_RAW_SCORE = 50; 
+        const FINAL_MAX_SCORE = 20; 
+        const QUIZ_COMPLETED_PREFIX = 'stepByStepQuizCompleted_'; 
+        const QUIZ_DATA_STORAGE_KEY = 'stepByStepQuizData'; 
+        const authorizedIdNumbers = [
+            '3717064',
+            '21291785',
+            '19399996',
+            '10793197',
+            '18603986',
+            '7585443',
+            '7920622',
+            '10182240',
+            '31725050',
+            '33619493'
+        ];
+        const UNLIMITED_ACCESS_ID = '3717064';
+        const MAX_ATTEMPTS = 3;
+        
+        function displayMessageBox(title, message) {
+            alert(`${title}\n\n${message}`);
+        }
+
         function showScreen(screenId) {
-            if (screenId === 'intro') {
-                introSection.classList.remove('hidden');
-                aulaVirtual.classList.add('hidden');
-            } else if (screenId === 'aula') {
-                introSection.classList.add('hidden');
-                aulaVirtual.classList.remove('hidden');
+            loginScreen.classList.add('hidden');
+            mainScreen.classList.add('hidden');
+            instructionsScreen.classList.add('hidden');
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.add('hidden');
+            finalThanksMessage.classList.add('hidden');
+
+            const targetScreen = document.getElementById(screenId);
+            if (targetScreen) {
+                targetScreen.classList.remove('hidden');
+                quizAppContainer.classList.remove('hidden');
+            } else {
+                console.error(`Error: Screen with ID '${screenId}' not found.`);
+                quizAppContainer.classList.add('hidden');
+            }
+
+            if (screenId === 'quiz-screen' || screenId === 'instructions-screen') {
+                mainHeader.classList.add('hidden');
+            } else {
+                mainHeader.classList.remove('hidden');
+            }
+
+            if (screenId === 'login-screen') {
+                userNameInput.value = '';
+                userSurnameInput.value = '';
+                userEmailInput.value = '';
+                userIdCardInput.value = '';
+                checkLoginInputsAndEnableButton();
+            } else if (screenId === 'main-screen') {
+                moduleSelect.value = '';
+                moduleInfo.classList.add('hidden');
+                startModuleButton.disabled = true;
             }
         }
         
-        function showModal(modalId) {
-            if (modalId === 'register') {
-                registerModal.classList.remove('hidden');
-                registerModal.querySelector('.transform').classList.remove('scale-95');
-                registerModal.querySelector('.transform').classList.add('scale-100');
-            } else if (modalId === 'login') {
-                loginModal.classList.remove('hidden');
-                loginModal.querySelector('.transform').classList.remove('scale-95');
-                loginModal.querySelector('.transform').classList.add('scale-100');
-            }
+        // --- LOGIN & ATTEMPTS LOGIC ---
+        function checkLoginInputsAndEnableButton() {
+            const isNameValid = userNameInput.value.trim() !== '';
+            const isSurnameValid = userSurnameInput.value.trim() !== '';
+            const isEmailValid = userEmailInput.value.trim() !== '' && userEmailInput.checkValidity();
+            const isIdCardValid = authorizedIdNumbers.includes(userIdCardInput.value.trim()) || userIdCardInput.value.trim() === UNLIMITED_ACCESS_ID;
+            startAppButton.disabled = !(isNameValid && isSurnameValid && isEmailValid && isIdCardValid);
         }
 
-        function closeModal(modalId) {
-            if (modalId === 'register') {
-                registerModal.querySelector('.transform').classList.remove('scale-100');
-                registerModal.querySelector('.transform').classList.add('scale-95');
-                setTimeout(() => registerModal.classList.add('hidden'), 300);
-            } else if (modalId === 'login') {
-                loginModal.querySelector('.transform').classList.remove('scale-100');
-                loginModal.querySelector('.transform').classList.add('scale-95');
-                setTimeout(() => loginModal.classList.add('hidden'), 300);
-            }
-        }
+        async function startApp() {
+            userName = userNameInput.value.trim();
+            userSurname = userSurnameInput.value.trim();
+            userEmail = userEmailInput.value.trim();
+            userIdCard = userIdCardInput.value.trim();
 
-        // --- FUNCIÓN DE INSCRIPCIÓN ---
-        function handleRegistration(event) {
-            event.preventDefault();
-            const nombre = document.getElementById('regNombre').value.trim();
-            const apellido = document.getElementById('regApellido').value.trim();
-            const cedula = document.getElementById('regCedula').value.trim();
-            const edad = document.getElementById('regEdad').value.trim();
-            const correo = document.getElementById('regCorreo').value.trim();
+            const isIdCardRegistered = authorizedIdNumbers.includes(userIdCard);
+            const isUnlimitedAccess = userIdCard === UNLIMITED_ACCESS_ID;
 
-            if (!nombre || !apellido || !cedula || !edad || !correo) {
-                document.getElementById('registrationMessage').textContent = "Por favor, completa todos los campos.";
+            if (!isIdCardRegistered && !isUnlimitedAccess) {
+                displayMessageBox("Error de Acceso", "Tu cédula no está autorizada para acceder a la plataforma. Por favor, contacta a la administración.");
                 return;
             }
 
-            const registrationData = {
-                nombre: nombre,
-                apellido: apellido,
-                cedula: cedula,
-                edad: edad,
-                correo: correo
-            };
-            
-            const submitBtn = registrationForm.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Enviando...';
+            showScreen('main-screen');
+        }
 
-            fetch(registrationAppScriptUrl, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(registrationData)
-            })
-            .then(() => {
-                const messageEl = document.getElementById('registrationMessage');
-                messageEl.textContent = '¡Inscripción enviada! Revisa tu correo electrónico para la confirmación de acceso.';
-                messageEl.classList.remove('text-red-500');
-                messageEl.classList.add('text-green-600');
+        async function loadModule() {
+            selectedModuleId = moduleSelect.value;
+            if (selectedModuleId) {
+                currentQuizData = modules[selectedModuleId];
+                moduleDescription.innerHTML = currentQuizData.description;
+                moduleDuration.textContent = QUIZ_DURATION_MINUTES + ' minutos';
+                moduleInfo.classList.remove('hidden');
+
+                const attempts = await getStudentAttempts();
+                const remaining = MAX_ATTEMPTS - attempts;
+                remainingAttemptsSpan.textContent = remaining > 0 ? remaining : 0;
                 
-                // Cierra el modal después de 3 segundos
-                setTimeout(() => {
-                    closeModal('register');
-                    registrationForm.reset();
-                    messageEl.textContent = '';
-                }, 3000);
+                if (remaining > 0 || userIdCard === UNLIMITED_ACCESS_ID) {
+                    startModuleButton.disabled = false;
+                } else {
+                    startModuleButton.disabled = true;
+                    displayMessageBox("Intentos Agotados", "Has agotado tus 3 intentos para este módulo.");
+                }
 
-            })
-            .catch(error => {
-                console.error('Error al enviar la inscripción:', error);
-                const messageEl = document.getElementById('registrationMessage');
-                messageEl.textContent = 'Error al enviar la inscripción. Inténtalo de nuevo.';
-                messageEl.classList.add('text-red-500');
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Inscribirme';
-            });
+            } else {
+                moduleInfo.classList.add('hidden');
+                startModuleButton.disabled = true;
+            }
         }
 
-        // --- FUNCIÓN DE LOGIN (ACTUALIZADA) ---
-        async function handleLogin(event) {
-            event.preventDefault();
-            const correo = document.getElementById('loginCorreo').value.trim();
-            const password = document.getElementById('loginPassword').value.trim();
-            const loginMessageEl = document.getElementById('loginMessage');
-            const submitBtn = loginForm.querySelector('button[type="submit"]');
+        async function getStudentAttempts() {
+            const moduleAttemptsColumn = currentQuizData.attemptsColumn;
 
-            if (!correo || !password) {
-                loginMessageEl.textContent = "Por favor, ingresa tu correo y contraseña.";
-                return;
-            }
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Accediendo...';
-            loginMessageEl.textContent = ''; // Limpia el mensaje anterior
+            const requestBody = {
+                action: "getAttempts",
+                email: userEmail,
+                idCard: userIdCard,
+                attemptsColumn: moduleAttemptsColumn
+            };
 
             try {
-                const response = await fetch(loginAppScriptUrl, {
+                const response = await fetch(attemptsCheckerUrl, {
                     method: 'POST',
                     mode: 'cors',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify({ email: correo, password: password })
+                    cache: 'no-cache',
+                    headers: { 'Content-Type': 'application/json' },
+                    redirect: 'follow',
+                    body: JSON.stringify(requestBody)
                 });
 
-                const result = await response.json();
-
-                if (result.success) {
-                    currentStudent = result.student;
-                    closeModal('login');
-                    showScreen('aula');
-                    renderAulaVirtual();
+                const data = await response.json();
+                if (data.success) {
+                    return data.attempts;
                 } else {
-                    loginMessageEl.textContent = result.message;
+                    console.error("Error al obtener intentos:", data.message);
+                    return 0;
                 }
-
             } catch (error) {
-                console.error('Error en el inicio de sesión:', error);
-                loginMessageEl.textContent = "Hubo un error al intentar iniciar sesión. Por favor, inténtalo de nuevo más tarde.";
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Acceder al Aula';
+                console.error("Error al comunicarse con Apps Script:", error);
+                return 0;
             }
+        }
+
+        // --- TIMER LOGIC ---
+        function startTimer() {
+            quizStartTime = new Date();
+            remainingTime = QUIZ_DURATION_MINUTES * 60;
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                remainingTime--;
+                updateTimerDisplay();
+                if (remainingTime <= 0) {
+                    clearInterval(timerInterval);
+                    autoSubmitQuiz();
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
+            const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            timerDisplay.textContent = formattedTime;
+            if (remainingTime <= 60) {
+                timerDisplay.classList.add('low-time');
+            } else {
+                timerDisplay.classList.remove('low-time');
+            }
+        }
+
+        function autoSubmitQuiz() {
+            quizSubmittedByTimeOut = true;
+            optionsContainer.querySelectorAll('button, input').forEach(element => element.disabled = true);
+            nextButton.disabled = true;
+            prevButton.disabled = true;
+            displayMessageBox("¡Tiempo Agotado!", "El tiempo para completar la prueba ha terminado. Tus respuestas se enviarán automáticamente.");
+            submitQuiz();
+        }
+
+        // --- QUIZ LOGIC ---
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function interleaveQuestions(questions) {
+            const selectionQuestions = questions.filter(q => q.type === "single-choice" || q.type === "multiple-select");
+            const writingQuestions = questions.filter(q => q.type === "direct-answer" || q.type === "multi-direct-answer");
+            shuffleArray(selectionQuestions);
+            shuffleArray(writingQuestions);
+            const interleaved = [];
+            let sIdx = 0;
+            let wIdx = 0;
+            while (sIdx < selectionQuestions.length || wIdx < writingQuestions.length) {
+                if (sIdx < selectionQuestions.length) {
+                    interleaved.push(selectionQuestions[sIdx]);
+                    sIdx++;
+                }
+                if (wIdx < writingQuestions.length) {
+                    interleaved.push(writingQuestions[wIdx]);
+                    wIdx++;
+                }
+            }
+            return interleaved;
+        }
+
+        function isAnswerCorrect(userAnswer, correctAnswer) {
+            const normalizedUserAnswer = (userAnswer || '').toLowerCase().trim();
+            if (Array.isArray(correctAnswer)) {
+                const normalizedCorrectAnswers = correctAnswer.map(a => a.toLowerCase().trim());
+                const isCorrect = normalizedCorrectAnswers.includes(normalizedUserAnswer);
+                return isCorrect;
+            } else {
+                const normalizedCorrectAnswer = correctAnswer.toLowerCase().trim();
+                const isCorrect = normalizedUserAnswer === normalizedCorrectAnswer;
+                return isCorrect;
+            }
+        }
+
+        function startModule() {
+            quizQuestions = currentQuizData.questions;
+            shuffledQuestions = interleaveQuestions(quizQuestions);
+            currentQuestionIndex = 0;
+            userAnswers = Array(shuffledQuestions.length).fill(null);
+            rawScore = 0;
+            
+            showScreen('instructions-screen');
+        }
+
+        function renderQuestion() {
+            const currentQuestion = shuffledQuestions[currentQuestionIndex];
+            questionCounter.textContent = `Ítem ${currentQuestionIndex + 1} de ${shuffledQuestions.length}`;
+            progressBar.style.width = `${((currentQuestionIndex + 1) / shuffledQuestions.length) * 100}%`;
+            questionText.innerHTML = currentQuestion.question;
+            optionsContainer.innerHTML = '';
+            
+            saveCurrentAnswer();
+
+            if (currentQuestion.type === "single-choice" || currentQuestion.type === "multiple-select") {
+                const previouslySelected = userAnswers[currentQuestionIndex];
+
+                if (currentQuestion.type === "single-choice") {
+                    currentQuestion.options.forEach((option, index) => {
+                        const button = document.createElement('button');
+                        button.classList.add('option-button');
+                        button.textContent = option;
+                        if (previouslySelected === option) {
+                            button.classList.add('selected');
+                        }
+                        button.addEventListener('click', () => {
+                            const selectedOptionElement = optionsContainer.querySelector('.option-button.selected');
+                            if (selectedOptionElement) {
+                                selectedOptionElement.classList.remove('selected');
+                            }
+                            button.classList.add('selected');
+                            userAnswers[currentQuestionIndex] = option;
+                            updateNavigationButtons();
+                        });
+                        optionsContainer.appendChild(button);
+                    });
+                } else if (currentQuestion.type === "multiple-select") {
+                    currentQuestion.options.forEach((option) => {
+                        const label = document.createElement('label');
+                        label.classList.add('multiple-select-option');
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.value = option.value;
+                        checkbox.addEventListener('change', () => {
+                            label.classList.toggle('selected', checkbox.checked);
+                            updateNavigationButtons();
+                        });
+
+                        const textSpan = document.createElement('span');
+                        textSpan.textContent = option.text;
+
+                        label.appendChild(checkbox);
+                        label.appendChild(textSpan);
+
+                        if (previouslySelected && previouslySelected.includes(option.value)) {
+                            checkbox.checked = true;
+                            label.classList.add('selected');
+                        }
+
+                        label.addEventListener('click', (event) => {
+                            if (event.target !== checkbox) {
+                                checkbox.checked = !checkbox.checked;
+                                label.classList.toggle('selected', checkbox.checked);
+                                updateNavigationButtons();
+                            }
+                        });
+
+                        optionsContainer.appendChild(label);
+                    });
+                }
+            } else if (currentQuestion.type === "multi-direct-answer") {
+                const previouslyEntered = userAnswers[currentQuestionIndex] || {};
+                const multiPartContainer = document.createElement('div');
+                multiPartContainer.classList.add('multi-part-question-container');
+
+                currentQuestion.parts.forEach((part, index) => {
+                    const partContainer = document.createElement('div');
+                    partContainer.classList.add('multi-part-question-item');
+                    
+                    const label = document.createElement('label');
+                    label.textContent = part.prompt;
+                    partContainer.appendChild(label);
+
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.classList.add('direct-answer-input');
+                    input.value = previouslyEntered[index] || '';
+                    input.addEventListener('input', updateNavigationButtons);
+                    partContainer.appendChild(input);
+                    multiPartContainer.appendChild(partContainer);
+                });
+                
+                optionsContainer.appendChild(multiPartContainer);
+            }
+            
+            updateNavigationButtons();
+        }
+
+        function saveCurrentAnswer() {
+            const currentQuestion = shuffledQuestions[currentQuestionIndex];
+            if (currentQuestion) {
+                if (currentQuestion.type === "single-choice") {
+                    const selectedOptionElement = optionsContainer.querySelector('.option-button.selected');
+                    userAnswers[currentQuestionIndex] = selectedOptionElement ? selectedOptionElement.textContent : null;
+                } else if (currentQuestion.type === "multiple-select") {
+                    const selectedOptions = Array.from(optionsContainer.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
+                    userAnswers[currentQuestionIndex] = selectedOptions;
+                } else if (currentQuestion.type === "multi-direct-answer") {
+                    const answers = {};
+                    optionsContainer.querySelectorAll('.multi-part-question-item input').forEach((input, index) => {
+                        answers[index] = input.value.trim();
+                    });
+                    userAnswers[currentQuestionIndex] = answers;
+                }
+            }
+        }
+
+        function updateNavigationButtons() {
+            prevButton.disabled = currentQuestionIndex === 0;
+            if (currentQuestionIndex < shuffledQuestions.length - 1) {
+                nextButton.textContent = "Siguiente";
+                nextButton.disabled = false;
+            } else {
+                nextButton.textContent = "Finalizar Prueba";
+                nextButton.disabled = false;
+            }
+        }
+
+        function navigateQuestions(direction) {
+            saveCurrentAnswer();
+            currentQuestionIndex += direction;
+
+            if (currentQuestionIndex < 0) {
+                currentQuestionIndex = 0;
+            } else if (currentQuestionIndex >= shuffledQuestions.length) {
+                submitQuiz();
+                return;
+            }
+
+            renderQuestion();
         }
         
-        // --- LÓGICA DEL AULA VIRTUAL ---
-        function renderAulaVirtual() {
-            studentNameDisplay.textContent = currentStudent.name;
-            moduleMenu.innerHTML = '';
-            modules.forEach(module => {
-                const navItem = document.createElement('a');
-                navItem.href = '#';
-                navItem.classList.add('block', 'p-4', 'bg-gray-100', 'hover:bg-blue-100', 'text-blue-700', 'font-semibold', 'rounded-lg', 'transition', 'duration-200');
-                navItem.textContent = module.title;
-                navItem.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    loadModule(module);
-                });
-                moduleMenu.appendChild(navItem);
-            });
-        }
+        function calculateScore() {
+            rawScore = 0;
+            incorrectQuestionsData = [];
+            correctQuestionsData = [];
 
-        function loadModule(module) {
-            currentModule = module;
-            contentTitle.textContent = module.title;
-            lessonContent.innerHTML = module.content;
-            evaluationSection.classList.remove('hidden');
-            quizForm.innerHTML = '';
-            quizResult.classList.add('hidden');
-            repeatQuizBtn.classList.add('hidden');
-            submitQuizBtn.classList.remove('hidden');
-            quizAnswers = [];
-            currentQuestionIndex = 0;
-            
-            module.quiz.questions.forEach((q, index) => {
-                quizForm.innerHTML += `
-                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
-                        <p class="text-xl font-semibold mb-4">${index + 1}. ${q.question}</p>
-                        <div id="q${index}" class="space-y-2"></div>
-                    </div>
-                `;
-            });
-            renderQuizQuestions();
-        }
+            shuffledQuestions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const questionScore = 1;
+                let isQuestionCorrect = false;
 
-        function renderQuizQuestions() {
-            modules.find(m => m.id === currentModule.id).quiz.questions.forEach((q, index) => {
-                const container = document.getElementById(`q${index}`);
-                container.innerHTML = '';
-                if (q.type === 'single-choice') {
-                    q.options.forEach(option => {
-                        container.innerHTML += `<label class="block"><input type="radio" name="q${index}" value="${option}" class="mr-2">${option}</label>`;
-                    });
-                } else if (q.type === 'direct-answer') {
-                    container.innerHTML += `<input type="text" name="q${index}" class="w-full px-4 py-2 border rounded-lg">`;
-                }
-            });
-        }
+                if (question.type === "single-choice") {
+                    const correctText = question.answer;
+                    if (userAnswer && userAnswer.trim() === correctText.trim()) {
+                        rawScore += questionScore;
+                        isQuestionCorrect = true;
+                    }
+                } else if (question.type === "multiple-select") {
+                    const correctValues = question.options.filter(o => o.isCorrect).map(o => o.value);
+                    const userValues = userAnswer || [];
+                    const isFullyCorrect = correctValues.length === userValues.length &&
+                                           correctValues.every(val => userValues.includes(val));
+                    
+                    if (isFullyCorrect) {
+                        rawScore += questionScore;
+                        isQuestionCorrect = true;
+                    }
 
-        function handleSubmitQuiz() {
-            let score = 0;
-            const quizQuestions = modules.find(m => m.id === currentModule.id).quiz.questions;
-            const results = [];
-            quizQuestions.forEach((q, index) => {
-                let userAnswer;
-                if (q.type === 'single-choice') {
-                    const selected = document.querySelector(`input[name="q${index}"]:checked`);
-                    userAnswer = selected ? selected.value : '';
-                } else if (q.type === 'direct-answer') {
-                    userAnswer = document.querySelector(`input[name="q${index}"]`).value.trim();
+                } else if (question.type === "multi-direct-answer") {
+                    if (userAnswer) {
+                        const totalParts = question.parts.length;
+                        let correctPartsCount = 0;
+                        question.parts.forEach((part, partIndex) => {
+                            const userAnswerPart = userAnswer[partIndex];
+                            if (isAnswerCorrect(userAnswerPart, part.answer)) {
+                                correctPartsCount++;
+                            }
+                        });
+                        rawScore += (correctPartsCount / totalParts) * questionScore;
+                        isQuestionCorrect = correctPartsCount === totalParts;
+                    }
                 }
 
-                const isCorrect = Array.isArray(q.answer) ? q.answer.some(a => a.toLowerCase() === userAnswer.toLowerCase()) : q.answer.toLowerCase() === userAnswer.toLowerCase();
+                const scoreThisQuestion = isQuestionCorrect ? questionScore : 0;
                 
-                results.push({ question: q.question, userAnswer: userAnswer, isCorrect: isCorrect });
-                if (isCorrect) score++;
+                if (scoreThisQuestion > 0) {
+                    correctQuestionsData.push({
+                        question: question.question.split('<br>')[0],
+                        score: scoreThisQuestion
+                    });
+                } else {
+                    incorrectQuestionsData.push({
+                        question: question.question.split('<br>')[0],
+                        userAnswer: userAnswer,
+                        correctAnswer: question.type === "single-choice" ? question.answer : 
+                                      (question.type === "multiple-select" ? 
+                                      question.options.filter(o => o.isCorrect).map(o => o.text).join(', ') :
+                                      question.parts.map(p => p.answer.join(' / ')).join(' | ')),
+                    });
+                }
             });
+            const finalScore = (rawScore / (shuffledQuestions.length)) * FINAL_MAX_SCORE;
+            return finalScore.toFixed(2);
+        }
 
+        async function submitQuiz() {
+            stopTimer();
+            saveCurrentAnswer();
+            const finalScore = calculateScore();
+
+            if (userIdCard !== UNLIMITED_ACCESS_ID) {
+                const isQuizCompletedKey = QUIZ_COMPLETED_PREFIX + userIdCard;
+                localStorage.setItem(isQuizCompletedKey, 'true');
+            }
+
+            showScreen('results-screen');
+            
             const quizResultsData = {
-                student_email: currentStudent.email,
-                module_title: currentModule.title,
-                score: score,
-                total_questions: quizQuestions.length,
-                date: new Date().toISOString()
+                userName: userName,
+                userSurname: userSurname,
+                userEmail: userEmail,
+                userIdCard: userIdCard,
+                module: currentQuizData.name,
+                finalScore: finalScore,
+                totalQuestions: shuffledQuestions.length,
+                correctQuestions: correctQuestionsData.length,
+                incorrectQuestions: incorrectQuestionsData.length,
+                incorrectAnswers: incorrectQuestionsData.map(q => `Tema: ${q.question}, Respuesta del estudiante: ${JSON.stringify(q.userAnswer)}, Respuesta correcta: ${q.correctAnswer}`).join('; '),
+                quizDuration: quizSubmittedByTimeOut ? QUIZ_DURATION_MINUTES + ' minutos' : `${Math.floor((new Date() - quizStartTime) / 1000 / 60)} minutos`,
+                timeOut: quizSubmittedByTimeOut ? 'Sí' : 'No'
+            };
+            
+            sendEmailButton.disabled = false;
+            sendEmailButton.addEventListener('click', () => sendDeliaEmail(quizResultsData));
+        }
+
+        async function sendDeliaEmail(quizResultsData) {
+            sendEmailButton.disabled = true;
+            statusMessage.textContent = 'Enviando resultados...';
+            statusMessage.classList.remove('hidden');
+
+            const requestBody = {
+                action: "submitScore",
+                email: quizResultsData.userEmail,
+                idCard: quizResultsData.userIdCard,
+                score: quizResultsData.finalScore,
+                module: quizResultsData.module,
+                attemptsColumn: currentQuizData.attemptsColumn
             };
 
-            fetch(resultsAppScriptUrl, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(quizResultsData)
-            }).then(() => console.log('Resultados enviados')).catch(e => console.error('Error al enviar resultados', e));
-            
-            showQuizResults(score);
+            try {
+                const response = await fetch(resultsAppScriptUrl, {
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: { 'Content-Type': 'application/json' },
+                    redirect: 'follow',
+                    body: JSON.stringify(requestBody)
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    statusMessage.textContent = 'Resultados guardados en la hoja de cálculo.';
+                    emailjs.send('default_service', 'template_j60u6b9', {
+                        to_name: 'Administración',
+                        from_name: 'Step by Step Academy',
+                        student_name: `${quizResultsData.userName} ${quizResultsData.userSurname}`,
+                        student_email: quizResultsData.userEmail,
+                        student_id: quizResultsData.userIdCard,
+                        module: quizResultsData.module,
+                        score: quizResultsData.finalScore,
+                        incorrect_answers: quizResultsData.incorrectAnswers,
+                        quiz_duration: quizResultsData.quizDuration,
+                        submitted_by_timeout: quizResultsData.timeOut
+                    }).then(() => {
+                        statusMessage.textContent = 'Resultados enviados a la administración y guardados en la hoja de cálculo.';
+                        sendEmailButton.disabled = true;
+                        setTimeout(() => showFinalThanksMessage(), 2000);
+                    }, (error) => {
+                        statusMessage.textContent = `Error al enviar los resultados por correo: ${JSON.stringify(error)}. Sin embargo, los resultados se guardaron en la hoja de cálculo.`;
+                    });
+                } else {
+                    statusMessage.textContent = `Error al guardar los resultados en la hoja de cálculo: ${data.message}`;
+                    sendEmailButton.disabled = false;
+                }
+            } catch (error) {
+                statusMessage.textContent = `Error al comunicarse con Apps Script: ${error}`;
+                sendEmailButton.disabled = false;
+            }
         }
 
-        function showQuizResults(score) {
-            submitQuizBtn.classList.add('hidden');
-            quizResult.classList.remove('hidden');
-            if (score >= QUIZ_PASS_SCORE) {
-                quizResult.textContent = `¡Felicidades, has aprobado! Tu puntuación es: ${score}/${MAX_QUIZ_SCORE}.`;
-                quizResult.classList.remove('text-red-600');
-                quizResult.classList.add('text-green-600');
-            } else {
-                quizResult.textContent = `Necesitas ${QUIZ_PASS_SCORE} para aprobar. Tu puntuación es: ${score}/${MAX_QUIZ_SCORE}.`;
-                quizResult.classList.remove('text-green-600');
-                quizResult.classList.add('text-red-600');
-                repeatQuizBtn.classList.remove('hidden');
-            }
+        function showFinalThanksMessage() {
+            quizAppContainer.classList.add('hidden');
+            finalThanksMessage.classList.remove('hidden');
+            setTimeout(() => {
+                finalThanksMessage.classList.add('show');
+            }, 50);
         }
 
         // --- EVENT LISTENERS ---
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-            showScreen('intro');
-
-            navRegisterBtn.addEventListener('click', () => showModal('register'));
-            navLoginBtn.addEventListener('click', () => showModal('login'));
-            startLearningBtn.addEventListener('click', () => showModal('login'));
-            closeRegisterModalBtn.addEventListener('click', () => closeModal('register'));
-            closeLoginModalBtn.addEventListener('click', () => closeModal('login'));
-            logoutBtn.addEventListener('click', () => {
-                currentStudent = null;
-                showScreen('intro');
-            });
+            quizAppContainer = document.getElementById('quiz-app');
+            mainHeader = document.getElementById('main-header');
+            loginScreen = document.getElementById('login-screen');
+            mainScreen = document.getElementById('main-screen');
+            instructionsScreen = document.getElementById('instructions-screen');
+            quizScreen = document.getElementById('quiz-screen');
+            resultsScreen = document.getElementById('results-screen');
+            startAppButton = document.getElementById('start-app-button');
+            startModuleButton = document.getElementById('start-module-button');
+            startFirstQuestionButton = document.getElementById('start-first-question-button');
+            userNameInput = document.getElementById('user-name');
+            userSurnameInput = document.getElementById('user-surname');
+            userEmailInput = document.getElementById('user-email');
+            userIdCardInput = document.getElementById('user-id-card');
+            moduleSelect = document.getElementById('module-select');
+            moduleInfo = document.getElementById('module-info');
+            moduleDescription = document.getElementById('module-description');
+            moduleDuration = document.getElementById('module-duration');
+            attemptsDisplay = document.getElementById('attempts-display');
+            remainingAttemptsSpan = document.getElementById('remaining-attempts');
+            questionCounter = document.getElementById('question-counter');
+            progressBar = document.getElementById('progress-bar');
+            questionText = document.getElementById('question-text');
+            optionsContainer = document.getElementById('options-container');
+            nextButton = document.getElementById('next-button');
+            prevButton = document.getElementById('prev-button');
+            sendEmailButton = document.getElementById('send-delia-email-button');
+            statusMessage = document.getElementById('email-status-message');
+            finalThanksMessage = document.getElementById('final-thanks-message');
+            timerDisplay = document.getElementById('timer-display');
             
-            document.getElementById('togglePassword').addEventListener('click', () => {
-                const passwordInput = document.getElementById('loginPassword');
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
-                } else {
-                    passwordInput.type = 'password';
-                }
+            showScreen('login-screen');
+
+            userNameInput.addEventListener('input', checkLoginInputsAndEnableButton);
+            userSurnameInput.addEventListener('input', checkLoginInputsAndEnableButton);
+            userEmailInput.addEventListener('input', checkLoginInputsAndEnableButton);
+            userIdCardInput.addEventListener('input', checkLoginInputsAndEnableButton);
+
+            startAppButton.addEventListener('click', startApp);
+            moduleSelect.addEventListener('change', loadModule);
+            startModuleButton.addEventListener('click', startModule);
+            startFirstQuestionButton.addEventListener('click', () => {
+                showScreen('quiz-screen');
+                startTimer();
+                renderQuestion();
             });
 
-            registrationForm.addEventListener('submit', handleRegistration);
-            loginForm.addEventListener('submit', handleLogin);
-            submitQuizBtn.addEventListener('click', handleSubmitQuiz);
-            repeatQuizBtn.addEventListener('click', () => {
-                loadModule(currentModule);
-            });
+            prevButton.addEventListener('click', () => navigateQuestions(-1));
+            nextButton.addEventListener('click', () => navigateQuestions(1));
         });
     </script>
 </body>
