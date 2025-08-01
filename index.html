@@ -328,14 +328,14 @@
         <div id="instructions-screen" class="hidden text-center">
             <h2 class="text-3xl font-bold text-gray-800 mb-4">Instrucciones de la Prueba</h2>
             <div class="text-left text-gray-700 text-lg space-y-4 mb-8">
-                <p class="font-bold text-blue-700"><i class="fas fa-exclamation-triangle text-red-600 mr-2"></i> **Important:** You have **only one opportunity** to complete this test. / **Importante:** Solo tienes **una única oportunidad** para completar esta prueba.</p>
-                <p class="font-bold text-blue-700"><i class="fas fa-star text-blue-600 mr-2"></i> Each correct answer is worth 0.4 points. Maximum score: 20 points. / Cada respuesta correcta vale 0.4 puntos. Puntuación máxima: 20 puntos.</p>
-                <p><i class="fas fa-book-reader text-blue-600 mr-2"></i> Read each item carefully before answering. / Lee cada ítem cuidadosamente antes de responder.</p>
-                <p><i class="fas fa-check-square text-blue-600 mr-2"></i> For **multiple-choice** items, you can choose one or more options. Each correct option adds points. / Para los ítems de **selección múltiple**, puedes elegir una o varias opciones. Cada opción correcta suma puntos.</p>
-                <p><i class="fas fa-keyboard text-blue-600 mr-2"></i> For **direct answer** items, write your answer in the provided field. Be careful with spelling and grammar. / Para los ítems de **respuesta directa**, escribe tu respuesta en el campo provisto. Asegúrate de la ortografía y gramática.</p>
-                <p><i class="fas fa-arrows-alt-h text-blue-600 mr-2"></i> You can navigate between items using the 'Back' and 'Next' buttons. / Puedes navegar entre los ítems usando los botones 'Atrás' y 'Siguiente'.</p>
-                <p class="font-bold text-blue-700"><i class="fas fa-check-circle text-green-600 mr-2"></i> **Review your answers carefully** before clicking "Finish Test". / **Revisa cuidadosamente tus respuestas** antes de hacer clic en "Finalizar Prueba".</p>
-                <p class="font-bold text-blue-700"><i class="fas fa-hourglass-half text-blue-600 mr-2"></i> The time limit is 120 minutes. Good luck! / El tiempo límite es de 120 minutos. ¡Mucha suerte!</p>
+                <p class="font-bold text-blue-700"><i class="fas fa-exclamation-triangle text-red-600 mr-2"></i> **Importante:** Solo tienes **una única oportunidad** para completar esta prueba.</p>
+                <p class="font-bold text-blue-700"><i class="fas fa-star text-blue-600 mr-2"></i> Cada respuesta correcta vale 0.4 puntos. Puntuación máxima: 20 puntos.</p>
+                <p><i class="fas fa-book-reader text-blue-600 mr-2"></i> Lee cada ítem cuidadosamente antes de responder.</p>
+                <p><i class="fas fa-check-square text-blue-600 mr-2"></i> Para los ítems de **selección múltiple**, puedes elegir una o varias opciones. Cada opción correcta suma puntos.</p>
+                <p><i class="fas fa-keyboard text-blue-600 mr-2"></i> Para los ítems de **respuesta directa**, escribe tu respuesta en el campo provisto. Asegúrate de la ortografía y gramática.</p>
+                <p><i class="fas fa-arrows-alt-h text-blue-600 mr-2"></i> Puedes navegar entre los ítems usando los botones 'Atrás' y 'Siguiente'.</p>
+                <p class="font-bold text-blue-700"><i class="fas fa-check-circle text-green-600 mr-2"></i> **Revisa cuidadosamente tus respuestas** antes de hacer clic en "Finalizar Prueba".</p>
+                <p class="font-bold text-blue-700"><i class="fas fa-hourglass-half text-blue-600 mr-2"></i> El tiempo límite es de 25 minutos. ¡Mucha suerte!</p>
             </div>
             <button id="start-first-question-button" class="main-button">Entendido, ¡Comenzar!</button>
         </div>
@@ -375,9 +375,9 @@
         })();
 
         // --- URLs DE GOOGLE APPS SCRIPT ---
-        const loginAppScriptUrl = 'https://script.google.com/macros/s/AKfycbzL5E-f20389v6C09o2l22X25-rXfS-kH6o0s/exec'; // URL del script de login
-        const attemptsCheckerUrl = 'https://script.google.com/macros/s/AKfycbzL5E-f20389v6C09o2l22X25-rXfS-kH6o0s/exec'; // ¡Es la misma URL del script de login!
-        const resultsAppScriptUrl = 'https://script.google.com/macros/s/AKfycbzL5E-f20389v6C09o2l22X25-rXfS-kH6o0s/exec'; // ¡Es la misma URL del script de login!
+        const loginAppScriptUrl = 'https://script.google.com/macros/s/AKfycbwk3HY1ZDUCkhxXq9d8cEsdCchkpNi8vdF_bgm7j0Fo-HCZlTnbC5wY6vgejpV527lOmQ/exec'; 
+        const attemptsCheckerUrl = 'https://script.google.com/macros/s/AKfycbwk3HY1ZDUCkhxXq9d8cEsdCchkpNi8vdF_bgm7j0Fo-HCZlTnbC5wY6vgejpV527lOmQ/exec'; 
+        const resultsAppScriptUrl = 'https://script.google.com/macros/s/AKfycbwk3HY1ZDUCkhxXq9d8cEsdCchkpNi8vdF_bgm7j0Fo-HCZlTnbC5wY6vgejpV527lOmQ/exec';
 
         // --- QUIZ DATA ---
         const modules = {
@@ -385,7 +385,7 @@
                 name: 'Módulo 1: Inglés Básico',
                 attemptsColumn: 'Módulo 1 - Intentos',
                 description: 'En este módulo aprenderás las bases del inglés, incluyendo saludos, números, días de la semana y el verbo "To be". / In this module you will learn the basics of English, including greetings, numbers, days of the week, and the verb "To be".',
-                duration: '120 minutos',
+                duration: '25 minutos',
                 questions: [
                     {
                         question: "Presentación y saludos (formal/informal)<br>Which of the following are informal greetings? (Select all that apply) / ¿Cuáles de las siguientes son saludos informales? (Selecciona todas las que apliquen):",
