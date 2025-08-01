@@ -445,9 +445,7 @@
 
     <script>
         // --- URLs DE GOOGLE APPS SCRIPT ---
-        const loginAppScriptUrl = 'https://script.google.com/macros/s/AKfycbwk3HY1ZDUCkhxXq9d8cEsdCchkpNi8vdF_bgm7j0Fo-HCZlTnbC5wY6vgejpV527lOmQ/exec';
-        const registrationAppScriptUrl = 'https://script.google.com/macros/s/AKfycby_A9KJp3c0WIlWz_vyh62ZPsDKo7yDnMHwieiL4BlHxJSXRHYPRhUkcPuz9L21SMMJlg/exec';
-        const resultsAppScriptUrl = 'https://script.google.com/macros/s/AKfycbzPCkDflF56iN7uQk4CVX-9ZuueLsZWvm0pT3iYmtMFwanDwhPgdqdcsFwE7JgszXni/exec';
+        const appScriptUrl = 'https://script.google.com/macros/s/AKfycbz_PCkDflF56iN7uQk4CVX-9ZuueLsZWvm0pT3iWmtMFwanDwhPgdqdcsFwE7JgszXni/exec';
 
         // --- MÓDULOS DEL CURSO ---
         const modules = [
@@ -604,11 +602,11 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'Enviando...';
 
-            fetch(registrationAppScriptUrl, {
+            fetch(appScriptUrl, { // Usamos la URL única
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(registrationData)
+                body: JSON.stringify({ ...registrationData, action: 'register' }) // Añadimos la acción
             })
             .then(() => {
                 const messageEl = document.getElementById('registrationMessage');
@@ -653,11 +651,11 @@
             loginMessageEl.textContent = '';
 
             try {
-                const response = await fetch(loginAppScriptUrl, {
+                const response = await fetch(appScriptUrl, { // Usamos la URL única
                     method: 'POST',
                     mode: 'cors',
                     headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify({ email: correo, password: password, action: 'login' })
+                    body: JSON.stringify({ email: correo, password: password, action: 'login' }) // Añadimos la acción
                 });
 
                 if (!response.ok) {
@@ -732,11 +730,11 @@
 
         async function checkAttempts(email, moduleId) {
             try {
-                const response = await fetch(loginAppScriptUrl, {
+                const response = await fetch(appScriptUrl, { // Usamos la URL única
                     method: 'POST',
                     mode: 'cors',
                     headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify({ email: email, moduleId: moduleId, action: 'checkAttempts' })
+                    body: JSON.stringify({ email: email, moduleId: moduleId, action: 'checkAttempts' }) // Añadimos la acción
                 });
                 return await response.json();
             } catch (error) {
@@ -939,7 +937,7 @@
                 sendResultsButton.disabled = true;
 
                 try {
-                    const response = await fetch(resultsAppScriptUrl, {
+                    const response = await fetch(appScriptUrl, { // Usamos la URL única
                         method: 'POST',
                         mode: 'cors',
                         headers: { 'Content-Type': 'text/plain' },
